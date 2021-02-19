@@ -15,7 +15,7 @@ function init() {
   const covid19StartPosition = [2]
 
   //! Make a grid with syringe
-  function createGrid(syringeStartPosition) {
+  function createGrid(syringeStartPosition, covid19StartPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       cell.textContent = i
@@ -25,8 +25,10 @@ function init() {
     addSyringe(syringeStartPosition)
     addCovid19(covid19StartPosition)
   }
-  function addCovid19(covid19StartPosition) {
-    cells[covid19StartPosition].classList.add(covid19Class)
+  function addCovid19(position) {
+    for (let i = 2; i < 7; i++) {
+      cells[position].classList.add(covid19Class)
+    }
   }
 
   function addSyringe(position) {
@@ -50,7 +52,7 @@ function init() {
     addSyringe(syringeCurrentPosition)
   }
   document.addEventListener('keydown', handleKeyDown)
-  createGrid(syringeStartPosition)
+  createGrid(syringeStartPosition, covid19StartPosition)
 
 
 
