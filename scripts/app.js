@@ -1,112 +1,72 @@
 function init() {
 
   //! Variables
-  //! grid
+  //! Grid
   const grid = document.querySelector('.grid')
-  const height = 10
   const width = 10
-  const rows = []
-  //! syringe
+  const cellCount = width * width
+  const cells = []
+  //! Syringe
   const syringeClass = 'syringe'
-  const syringeStartRow = 9
-  const syringeStartColumn = 5
-  let syringeCurrentRow = 9
-  let syringeCurrentColumn = 5
-  //! covid19
+  const syringeStartPosition = 95
+  let syringeCurrentPosition = 95
+  //! Covid19
   const covid19Class = 'covid19'
   const covid19StartPosition = 0
 
   //! Make a grid with syringe
-  function createGrid(syringeStartRow, syringeStartColumn, covid19StartPosition) {
-    // Outside for loop creates all of the rows within the grid
-    for (let i = 0; i < height; i++) {
-      // Initialise current row
-      const row = []
-      // Inside for loop creates all cells within current row
-      for (let j = 0; j < width; j++) {
-        // Create cell
-        const cell = document.createElement('div')
-        // Set cell text
-        cell.textContent = `${i === 0 ? '' : i}${j}`
-        grid.appendChild(cell)
-        row.push(cell)
-      }
-      rows.push(row)
+  function createGrid(syringeStartPosition) {
+    for (let i = 0; i < cellCount; i++) {
+      const cell = document.createElement('div')
+      cell.textContent = i
+      grid.appendChild(cell)
+      cells.push(cell)
     }
-    addSyringe(syringeStartRow, syringeStartColumn)
-    addCovid19(covid19StartPosition)
+    addSyringe(syringeStartPosition)
   }
 
+  function addSyringe(position) {
+    cells[position].classList.add(syringeClass)
+  }
+  function removeSyringe(position) {
+    cells[position].classList.remove(syringeClass)
+  }
   //! Add formation of virus
   function addCovid19() {
-    rows.forEach((row, index) => {
-      if (index < 5) {
-        row.forEach((column, index) => {
-          index > 3 ? column.classList.add(covid19Class) : null
-        })
-      }
-    })
-    console.log(rows)
-  }
-
-  //! Formation movement 
-  function onStart() {
-    let covidCells = document.querySelectorAll('.covid19').length
-
-    // while (covidCells > 0) {
-    // setInterval(() => {
-    //   rows.forEach((row, index) => {
-    //     row.forEach((cell, index) => {
-    //       if (cell.className === covid19Class) {
-    //         cell.classList.remove(covid19Class)
-    //         row[index - 1].classList.add(covid19Class)
-    //       }
-    //     })
-    //     console.log(index)
-    //   })
-    // }, 1000)
-    // covidCells = document.querySelectorAll('.covid19').length
-    // }
-    alert('No More Covid!')
-    // console.log(covidCells)
-    // let i = 0
-
-
-  }
-  //! Add syringe to grid
-  function addSyringe(row, column) {
-    rows[row][column].classList.add(syringeClass)
-    // cells[position].classList.add(syringeClass)
-  }
-  function removeSyringe(row, column) {
-    rows[row][column].classList.remove(syringeClass)
-    // cells[position].classList.add(syringeClass)
+    for (let i = 4; i < 10; i++) {
+      cells[i].classList.add(covid19Class)
+    }
+    //! different classes to be added to these for different gifs for each row
+    for (let i = 14; i < 20; i++) {
+      cells[i].classList.add(covid19Class)
+    }
+    for (let i = 24; i < 30; i++) {
+      cells[i].classList.add(covid19Class)
+    }
+    for (let i = 34; i < 40; i++) {
+      cells[i].classList.add(covid19Class)
+    }
+    for (let i = 44; i < 50; i++) {
+      cells[i].classList.add(covid19Class)
+    }
   }
 
   //! Syringe movement
   function handleKeyDown(event) {
     const key = event.keyCode
-    removeSyringe(syringeCurrentRow, syringeCurrentColumn)
-    if (key === 39 && syringeCurrentColumn % width !== width - 1) {
-      syringeCurrentColumn++
-    } else if (key === 37 && syringeCurrentColumn % width !== 0) {
-      syringeCurrentColumn--
+    removeSyringe(syringeCurrentPosition)
+    if (key === 39 && syringeCurrentPosition % width !== width - 1) {
+      syringeCurrentPosition++
+    } else if (key === 37 && syringeCurrentPosition % width !== 0) {
+      syringeCurrentPosition--
     } else {
       console.log('INVALID KEY')
     }
-    addSyringe(syringeCurrentRow, syringeCurrentColumn)
+    addSyringe(syringeCurrentPosition)
   }
   document.addEventListener('keydown', handleKeyDown)
-  createGrid(syringeStartRow, syringeStartColumn, covid19StartPosition)
-  onStart()
-
-
-
-
-
-
-
-
+  createGrid(syringeStartPosition)
+  addCovid19()
 }
 
 window.addEventListener('DOMContentLoaded', init)
