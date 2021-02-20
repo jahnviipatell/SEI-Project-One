@@ -67,11 +67,17 @@ function init() {
     }
   }
 
+  const rowOne = cells.slice(0, 10)
+  console.log(rowOne)
   // function moveRow() {
   //   setInterval(() => {
   //     cells.forEach((cell, index) => {
-  const rowOne = cells.slice(0, 10)
-  console.log(rowOne)
+  // const rowOne = cells.slice(0, 10)
+  // console.log(rowOne)
+  // rowOne.map(index => {
+  //   return index + 10
+  // })
+
   // if (cell.className === covid19Class && 0 < index && index < 10) {
   // if (cells[4] === 0) {
   //     cell.classList.remove(covid19Class)
