@@ -12,7 +12,7 @@ function init() {
   let syringeCurrentPosition = 95
   //! covid19
   const covid19Class = 'covid19'
-  const covid19StartPosition = [2]
+  const covid19StartPosition = 0
 
   //! Make a grid with syringe
   function createGrid(syringeStartPosition, covid19StartPosition) {
@@ -25,12 +25,44 @@ function init() {
     addSyringe(syringeStartPosition)
     addCovid19(covid19StartPosition)
   }
-  function addCovid19(position) {
-    for (let i = 2; i < 7; i++) {
-      cells[position].classList.add(covid19Class)
+
+  //! Add formation of virus
+  function addCovid19() {
+    for (let i = 4; i < 10; i++) {
+      cells[i].classList.add(covid19Class)
+    }
+    //! different classes to be added to these for different gifs for each row
+    for (let i = 14; i < 20; i++) {
+      cells[i].classList.add(covid19Class)
+    }
+    for (let i = 24; i < 30; i++) {
+      cells[i].classList.add(covid19Class)
+    }
+    for (let i = 34; i < 40; i++) {
+      cells[i].classList.add(covid19Class)
+    }
+    for (let i = 44; i < 50; i++) {
+      cells[i].classList.add(covid19Class)
     }
   }
+  //! Formation movement 
+  function onStart() {
+    // const covidCells = document.querySelectorAll('.covid19')
+    // console.log(covidCells)
+    // let i = 0
 
+    // setInterval(() => {
+    cells.forEach((cell, index) => {
+      if (cell.className === covid19Class) {
+        cell.classList.remove(covid19Class)
+        cells[index - 1].classList.add(covid19Class)
+      }
+      console.log(index)
+    })
+    // }, 1000)
+
+  }
+  //! Add syringe to grid
   function addSyringe(position) {
     cells[position].classList.add(syringeClass)
   }
@@ -53,7 +85,7 @@ function init() {
   }
   document.addEventListener('keydown', handleKeyDown)
   createGrid(syringeStartPosition, covid19StartPosition)
-
+  onStart()
 
 
 

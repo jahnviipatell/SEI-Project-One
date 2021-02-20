@@ -55,12 +55,14 @@ h1 {
   background-image: url('../Assets/r903qbml6t0bna7334pu6060ee.png');
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: left;
   cursor: pointer;
 }
 .grid div.covid19 {
   background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
-  background-size: contain;
+  background-size:cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 /* .test {
   background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
