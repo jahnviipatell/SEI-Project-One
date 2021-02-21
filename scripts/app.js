@@ -71,37 +71,39 @@ function init() {
   //! Move formation
   //! 1 ==> LEFT
   //! 0 ==> RIGHT
+
   function moveFormation() {
+    let direction = 1
+    let count = 0
     setInterval(() => {
-      let direction = 1
-      let leftCount = 0
-      let rightCount = 0
       for (let i = 89; i > 0; i--) {
-        if (leftCount % 5 === 0 || rightCount % 5 === 0) {
+        if (count === 5) {
           cells[i].classList.remove(covid19Class)
           cells[i + 10].classList.add(covid19Class)
-        }
-      } if (direction === 1) {
-        for (let i = 0; i < 1; i++) {
-          cells.forEach((cell, index) => {
-            if (cell.className === covid19Class) {
-              cells[index].classList.remove(covid19Class)
-              cells[index - 1].classList.add(covid19Class)
-              direction = 0
-              leftCount = leftCount + 1
-            }
-          })
-        }
-      } else if (direction === 0) {
-        for (let i = 0; i < 1; i++) {
-          cells.forEach((cell, index) => {
-            if (cell.className === covid19Class) {
-              cells[index].classList.remove(covid19Class)
-              cells[index + 1].classList.add(covid19Class)
-              direction = 1
-              rightCount = rightCount + 1
-            }
-          })
+        } if (direction === 1) {
+          for (let i = 0; i < 1; i++) {
+            cells.forEach((cell, index) => {
+              if (cell.className === covid19Class) {
+                cells[index].classList.remove(covid19Class)
+                cells[index - 1].classList.add(covid19Class)
+                direction = 0
+                count = count + 1
+              }
+            })
+          }
+        } else if (direction === 0) {
+          for (let i = 0; i < 1; i++) {
+            cells.forEach((cell, index) => {
+              if (cell.className === covid19Class) {
+                cells[index].classList.remove(covid19Class)
+                cells[index + 1].classList.add(covid19Class)
+                direction = 1
+                count = count + 1
+              }
+            })
+          }
+        } else {
+          console.log('Something went wrong...')
         }
       }
     }, 2000)
