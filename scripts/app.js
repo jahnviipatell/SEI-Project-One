@@ -69,92 +69,50 @@ function init() {
   }
 
   //! Move formation
+  //! 1 ==> LEFT
+  //! 0 ==> RIGHT
   function moveFormation() {
     setInterval(() => {
       let direction = 1
       for (let i = 89; i > 0; i--) {
-        if (cells[i].className === covid19Class) {
-          cells[i].classList.remove(covid19Class)
-          cells[i + 10].classList.add(covid19Class)
-        }
-      } if (direction === 1) {
-        for (let i = 0; i < 1; i++) {
-          cells.forEach((cell, index) => {
-            if (cell.className === covid19Class) {
-              cells[index].classList.remove(covid19Class)
-              cells[index - 1].classList.add(covid19Class)
-              direction = 0
-            }
-          })
-        }
-      } else if (direction === 0) {
-        for (let i = 0; i < 1; i++) {
-          cells.forEach((cell, index) => {
-            if (cell.className === covid19Class) {
-              cells[index].classList.remove(covid19Class)
-              cells[index + 1].classList.add(covid19Class)
-              direction = 1
-            }
-          })
-        }
+        // if (cells[i] === 0 || cells[i] === 19) {
+        cells[i].classList.remove(covid19Class)
+        cells[i + 10].classList.add(covid19Class)
       }
-    }, 2000)
-
-
-    // the part that moves them across by one
-    // setInterval(() => {
-    // for (let i = 0; i < 1; i++) {
-    //   cells.forEach((cell, index) => {
-    //     if (cell.className === covid19Class) {
-    //       cells[index].classList.remove(covid19Class)
-    //       cells[index - 1].classList.add(covid19Class)
-    //     }
-    //   })
-    // }
-    // }, 2000)
-
-  }
-
-
-
-
-  // function moveFormation() {
-  //   setInterval(() => {
-  //     //! 1 ==> LEFT
-  //     //! 0 ==> RIGHT
-  //     let direction = 1
-  //     for (let i = 0; i < height; i++) {
-  //       // let direction = 1
-  //       if (i !== 0) {
-  //         for (let i = 89; i > 0; i--) {
-  //           cells.forEach((cell, i) => {
-  //             if (cell.className === covid19Class) {
-  //               cells[i].classList.remove(covid19Class)
-  //               cells[i + 10].classList.add(covid19Class)
-  //             }
-  //           })
-  //         }if (direction === 1 && cells[i].className === covid19Class) {
-  //         //   cells[i].classList.remove(covid19Class)
-  //         //   cells[i - 1].classList.add(covid19Class)
-  //         //   direction = 0
-  //         // } else if (direction === 0 && cells[i].className === covid19Class) {
-  //         //   cells[i].classList.remove(covid19Class)
-  //         //   cells[i + 1].classList.add(covid19Class)
-  //         //   direction = 1
-  //         // }
-  //       }
-  //     }
-  //     // clearInterval()
-  //   }, 2000)
+    } if (direction === 1) {
+      for (let i = 0; i < 1; i++) {
+        cells.forEach((cell, index) => {
+          if (cell.className === covid19Class) {
+            cells[index].classList.remove(covid19Class)
+            cells[index - 1].classList.add(covid19Class)
+            direction = 0
+          }
+        })
+      }
+    } else if (direction === 0) {
+      for (let i = 0; i < 1; i++) {
+        cells.forEach((cell, index) => {
+          if (cell.className === covid19Class) {
+            cells[index].classList.remove(covid19Class)
+            cells[index + 1].classList.add(covid19Class)
+            direction = 1
+          }
+        })
+      }
+    }
+  }, 2000)
+}
 
 
 
 
 
-  document.addEventListener('keydown', handleKeyDown)
-  createGrid(syringeStartPosition)
-  addCovid19()
-  moveFormation()
+
+
+document.addEventListener('keydown', handleKeyDown)
+createGrid(syringeStartPosition)
+addCovid19()
+moveFormation()
 
 }
 
