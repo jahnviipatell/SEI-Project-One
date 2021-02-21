@@ -74,34 +74,38 @@ function init() {
   function moveFormation() {
     setInterval(() => {
       let direction = 1
+      let leftCount = 0
+      let rightCount = 0
       for (let i = 89; i > 0; i--) {
-        // if (cells[i] === 0 || cells[i] === 19) {
-        cells[i].classList.remove(covid19Class)
-        cells[i + 10].classList.add(covid19Class)
+        if (leftCount % 5 === 0 || rightCount % 5 === 0) {
+          cells[i].classList.remove(covid19Class)
+          cells[i + 10].classList.add(covid19Class)
+        }
+      } if (direction === 1) {
+        for (let i = 0; i < 1; i++) {
+          cells.forEach((cell, index) => {
+            if (cell.className === covid19Class) {
+              cells[index].classList.remove(covid19Class)
+              cells[index - 1].classList.add(covid19Class)
+              direction = 0
+              leftCount = leftCount + 1
+            }
+          })
+        }
+      } else if (direction === 0) {
+        for (let i = 0; i < 1; i++) {
+          cells.forEach((cell, index) => {
+            if (cell.className === covid19Class) {
+              cells[index].classList.remove(covid19Class)
+              cells[index + 1].classList.add(covid19Class)
+              direction = 1
+              rightCount = rightCount + 1
+            }
+          })
+        }
       }
-    } if (direction === 1) {
-      for (let i = 0; i < 1; i++) {
-        cells.forEach((cell, index) => {
-          if (cell.className === covid19Class) {
-            cells[index].classList.remove(covid19Class)
-            cells[index - 1].classList.add(covid19Class)
-            direction = 0
-          }
-        })
-      }
-    } else if (direction === 0) {
-      for (let i = 0; i < 1; i++) {
-        cells.forEach((cell, index) => {
-          if (cell.className === covid19Class) {
-            cells[index].classList.remove(covid19Class)
-            cells[index + 1].classList.add(covid19Class)
-            direction = 1
-          }
-        })
-      }
-    }
-  }, 2000)
-}
+    }, 2000)
+  }
 
 
 
@@ -109,10 +113,10 @@ function init() {
 
 
 
-document.addEventListener('keydown', handleKeyDown)
-createGrid(syringeStartPosition)
-addCovid19()
-moveFormation()
+  document.addEventListener('keydown', handleKeyDown)
+  createGrid(syringeStartPosition)
+  addCovid19()
+  moveFormation()
 
 }
 
