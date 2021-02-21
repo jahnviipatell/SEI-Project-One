@@ -69,18 +69,34 @@ function init() {
   }
 
   //! Move formation
-  setInterval(() => {
+  function moveFormation() {
+
     for (let i = 0; i < 1; i++) {
-      cells.forEach((cell, index) => {
-        if (cell.className === covid19Class) {
-          cells[index].classList.remove(covid19Class)
-          cells[index - 1].classList.add(covid19Class)
-        }
-      })
+      // if (i !== 0) {
+      for (let i = 0; i < height; i++) {
+        cells.forEach((cell, index) => {
+          if (cell.className === covid19Class) {
+            cells[index].classList.remove(covid19Class)
+            cells[index + 10].classList.add(covid19Class)
+          }
+        })
+      }
+      // }
     }
-  }, 2000)
 
+    // the part that moves them across by one
+    // setInterval(() => {
+    // for (let i = 0; i < 1; i++) {
+    //   cells.forEach((cell, index) => {
+    //     if (cell.className === covid19Class) {
+    //       cells[index].classList.remove(covid19Class)
+    //       cells[index - 1].classList.add(covid19Class)
+    //     }
+    //   })
+    // }
+    // }, 2000)
 
+  }
 
 
 
@@ -121,7 +137,7 @@ function init() {
   document.addEventListener('keydown', handleKeyDown)
   createGrid(syringeStartPosition)
   addCovid19()
-  // moveFormation()
+  moveFormation()
 
 }
 
