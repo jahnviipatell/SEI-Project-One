@@ -71,10 +71,32 @@ function init() {
   //! Move formation
   function moveFormation() {
     setInterval(() => {
+      let direction = 1
+
       for (let i = 89; i > 0; i--) {
         if (cells[i].className === covid19Class) {
           cells[i].classList.remove(covid19Class)
           cells[i + 10].classList.add(covid19Class)
+        }
+      } if (direction === 1) {
+        for (let i = 0; i < 1; i++) {
+          cells.forEach((cell, index) => {
+            if (cell.className === covid19Class) {
+              cells[index].classList.remove(covid19Class)
+              cells[index - 1].classList.add(covid19Class)
+              direction = 0
+            }
+          })
+        }
+      } else if (direction === 0) {
+        for (let i = 0; i < 1; i++) {
+          cells.forEach((cell, index) => {
+            if (cell.className === covid19Class) {
+              cells[index].classList.remove(covid19Class)
+              cells[index + 1].classList.add(covid19Class)
+              direction = 1
+            }
+          })
         }
       }
     }, 2000)
