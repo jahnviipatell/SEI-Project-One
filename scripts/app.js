@@ -69,7 +69,16 @@ function init() {
   }
 
   //! Move formation
-
+  setInterval(() => {
+    for (let i = 0; i < 1; i++) {
+      cells.forEach((cell, index) => {
+        if (cell.className === covid19Class) {
+          cells[index].classList.remove(covid19Class)
+          cells[index - 1].classList.add(covid19Class)
+        }
+      })
+    }
+  }, 2000)
 
 
 
