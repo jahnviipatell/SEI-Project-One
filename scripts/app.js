@@ -4,7 +4,8 @@ function init() {
   //! Grid
   const grid = document.querySelector('.grid')
   const width = 10
-  const cellCount = width * width
+  const height = 10
+  const cellCount = width * height
   const cells = []
   console.log(cells)
   //! Syringe
@@ -25,72 +26,65 @@ function init() {
       cells.push(cell)
     }
     addSyringe(syringeStartPosition)
-    //! Rows
-    let rowOne = cells.slice(0, 10)
-    const rowTwo = cells.slice(10, 20)
-    const rowThree = cells.slice(20, 30)
-    const rowFour = cells.slice(30, 40)
-    const rowFive = cells.slice(40, 50)
-    const rowSix = cells.slice(50, 60)
-    const rowSeven = cells.slice(60, 70)
-    const rowEight = cells.slice(70, 80)
-    const rowNine = cells.slice(80, 90)
-    const rowTen = cells.slice(90, 100)
-    console.log(rowOne[0])
-
-    // function moveRow() {
-
-    moveRow = setInterval(() => {
-      for (let i = 0; i < 1; i++) {
-        rowOne.forEach((cell, index) => {
-          if (cell.className === covid19Class) {
-            cells[index].classList.remove(covid19Class)
-            cells[index - 1].classList.add(covid19Class)
-          }
-        })
-      }
-    }, 2000)
-
-    // moveRow = setInterval(() => {
-    //   // function move() => {
-    //   for (let i = 0; i < 10; i++) {
-    //     cells[i].classList.remove(covid19Class)
-    //     if (cells.className === covid19Class) {
-    //       cells[i - 1].classList.add(covid19Class)
-    //     }
-    //   }
-    // }, 2000)
-    // for (let i = 4; i < 10; i++) {
-    //   cells[i].classList.add(covid19Class)
-    // }
-    // cells.forEach((cell, index) => {
-    // console.log(rowOne)
-    // rowOne.map(index => {
-    //   return index + 10
-    // if (cell.className === covid19Class && 0 < index && index < 10) {
-    //   if (rowOne[0] === covid19Class) {
-    //     rowOne.classList.remove(covid19Class)
-    //     // rowOne[index + 10].classList.add(covid19Class)
-    //   } else {
-    //     cell.classList.remove(covid19Class)
-    //     cells[index - 1].classList.add(covid19Class)
-    //   }
-    // } else if (cell.className === covid19Class && 10 < index && index < 20) {
-    //   setTimeout(() => {
-    //     cell.classList.remove(covid19Class)
-    //     cells[index - 1].classList.add(covid19Class)
-    //   }, 400)
-    // }
-    // })
-    // }, 2000)
-    // }
-
-
-
-
-
-    // END OF MAKE A GRID WITH SYRINGE FUNCTION (closing bracket below)
   }
+  //! Rows
+  // let rowOne = cells.slice(0, 10)
+  // const rowTwo = cells.slice(10, 20)
+  // const rowThree = cells.slice(20, 30)
+  // const rowFour = cells.slice(30, 40)
+  // const rowFive = cells.slice(40, 50)
+  // const rowSix = cells.slice(50, 60)
+  // const rowSeven = cells.slice(60, 70)
+  // const rowEight = cells.slice(70, 80)
+  // const rowNine = cells.slice(80, 90)
+  // const rowTen = cells.slice(90, 100)
+  // console.log(rowOne[0])
+
+  // function moveRow() {
+  //! Move formation
+  setInterval(() => {
+    let direction = 1
+    //! 1 ==> LEFT
+    //! 0 ==> RIGHT
+    for (let i = 0; i < height; i++) {
+      if (i !== 0) {
+        for (i = 89; i > 0; i--) {
+          if (cells[i].className === covid19Class) {
+            cells[i].classList.remove(covid19Class)
+            cells[i + 10].classList.add(covid19Class)
+          }
+        }
+      } if (direction === 1 && cells[i].className === covid19Class) {
+        cells[i].classList.remove(covid19Class)
+        cells[i - 1].classList.add(covid19Class)
+        direction = 0
+      }
+      //  else if (direction === 0 && cells[i].className === covid19Class) {
+      //   cells[i].classList.remove(covid19Class)
+      //   cells[i + 1].classList.add(covid19Class)
+      //   direction = 1
+      // }
+    }
+  }, 20)
+
+
+
+
+  // for (let i = 0; i < 1; i++) {
+  //   rowOne.forEach((cell, index) => {
+  //     if (cell.className === covid19Class) {
+  //       cells[index].classList.remove(covid19Class)
+  //       cells[index - 1].classList.add(covid19Class)
+  //     }
+  //   })
+  // }
+
+
+
+
+
+  // END OF MAKE A GRID WITH SYRINGE FUNCTION (closing bracket below)
+  // }
 
   function addSyringe(position) {
     cells[position].classList.add(syringeClass)
