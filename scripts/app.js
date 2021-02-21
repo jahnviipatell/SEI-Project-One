@@ -26,49 +26,10 @@ function init() {
       cells.push(cell)
     }
     addSyringe(syringeStartPosition)
-
-    //! Rows
-    // let rowOne = cells.slice(0, 10)
-    // const rowTwo = cells.slice(10, 20)
-    // const rowThree = cells.slice(20, 30)
-    // const rowFour = cells.slice(30, 40)
-    // const rowFive = cells.slice(40, 50)
-    // const rowSix = cells.slice(50, 60)
-    // const rowSeven = cells.slice(60, 70)
-    // const rowEight = cells.slice(70, 80)
-    // const rowNine = cells.slice(80, 90)
-    // const rowTen = cells.slice(90, 100)
-    // console.log(rowOne[0])
-
-    // function moveRow() {
-    //! Move formation
-    setInterval(() => {
-      //! 1 ==> LEFT
-      //! 0 ==> RIGHT
-      for (let i = 0; i < height; i++) {
-        let direction = 1
-        if (i !== 0) {
-          for (i = 89; i > 0; i--) {
-            if (cells[i].className === covid19Class) {
-              cells[i].classList.remove(covid19Class)
-              cells[i + 10].classList.add(covid19Class)
-            }
-          }
-        } if (direction === 1 && cells[i].className === covid19Class) {
-          cells[i].classList.remove(covid19Class)
-          cells[i - 1].classList.add(covid19Class)
-          direction = 0
-        } else if (direction === 0 && cells[i].className === covid19Class) {
-          cells[i].classList.remove(covid19Class)
-          cells[i + 1].classList.add(covid19Class)
-          direction = 1
-        }
-      }
-    }, 2000)
-
-
-    // END OF MAKE A GRID WITH SYRINGE FUNCTION (closing bracket below)
   }
+
+  // END OF MAKE A GRID WITH SYRINGE FUNCTION (closing bracket below)
+  // }
 
   function addSyringe(position) {
     cells[position].classList.add(syringeClass)
@@ -108,15 +69,44 @@ function init() {
     for (let i = 44; i < 50; i++) {
       cells[i].classList.add(covid19Class)
     }
+
+    //! Move formation
+    // move() = setInterval(() => {
+    //! 1 ==> LEFT
+    //! 0 ==> RIGHT
+    let direction = 1
+    for (let i = 0; i < height; i++) {
+      // let direction = 1
+      if (i !== 0) {
+        for (i = 89; i > 0; i--) {
+          if (cells[i].className === covid19Class) {
+            cells[i].classList.remove(covid19Class)
+            cells[i + 10].classList.add(covid19Class)
+          }
+        }
+      } if (direction === 1 && cells[i].className === covid19Class) {
+        cells[i].classList.remove(covid19Class)
+        cells[i - 1].classList.add(covid19Class)
+        direction = 0
+      }
+      else if (direction === 0 && cells[i].className === covid19Class) {
+        cells[i].classList.remove(covid19Class)
+        cells[i + 1].classList.add(covid19Class)
+        direction = 1
+      }
+    }
+    // }, 2000)
+    // clearInterval()
   }
+}
 
 
 
 
 
-  document.addEventListener('keydown', handleKeyDown)
-  createGrid(syringeStartPosition)
-  addCovid19()
+document.addEventListener('keydown', handleKeyDown)
+createGrid(syringeStartPosition)
+addCovid19()
   // moveRow()
 
 }
