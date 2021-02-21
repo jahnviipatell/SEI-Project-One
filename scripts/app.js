@@ -69,8 +69,9 @@ function init() {
     for (let i = 44; i < 50; i++) {
       cells[i].classList.add(covid19Class)
     }
-
-    //! Move formation
+  }
+  //! Move formation
+  function moveFormation() {
     // move() = setInterval(() => {
     //! 1 ==> LEFT
     //! 0 ==> RIGHT
@@ -88,8 +89,7 @@ function init() {
         cells[i].classList.remove(covid19Class)
         cells[i - 1].classList.add(covid19Class)
         direction = 0
-      }
-      else if (direction === 0 && cells[i].className === covid19Class) {
+      } else if (direction === 0 && cells[i].className === covid19Class) {
         cells[i].classList.remove(covid19Class)
         cells[i + 1].classList.add(covid19Class)
         direction = 1
@@ -97,17 +97,18 @@ function init() {
     }
     // }, 2000)
     // clearInterval()
+
+    // }
   }
-}
 
 
 
 
 
-document.addEventListener('keydown', handleKeyDown)
-createGrid(syringeStartPosition)
-addCovid19()
-  // moveRow()
+  document.addEventListener('keydown', handleKeyDown)
+  createGrid(syringeStartPosition)
+  addCovid19()
+  moveFormation()
 
 }
 
