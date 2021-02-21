@@ -41,19 +41,14 @@ function init() {
     // function moveRow() {
 
     moveRow = setInterval(() => {
-      rowOne.forEach((cell, index) => {
-        if (cell.className === covid19Class) {
-          rowOne[index].classList.remove(covid19Class)
-          rowOne[index - 1].classList.add(covid19Class)
-        }
-        console.log(rowOne)
-        // else if (rowOne[4] === 0) {
-        //   rowOne.classList.remove(covid19Class)
-        //   rowOne = rowTwo
-        // }
-        // console.log(rowOne[4])
-
-      })
+      for (let i = 0; i < 1; i++) {
+        rowOne.forEach((cell, index) => {
+          if (cell.className === covid19Class) {
+            cells[index].classList.remove(covid19Class)
+            cells[index - 1].classList.add(covid19Class)
+          }
+        })
+      }
     }, 2000)
 
     // moveRow = setInterval(() => {
