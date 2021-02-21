@@ -26,26 +26,45 @@ function init() {
     }
     addSyringe(syringeStartPosition)
     //! Rows
-    // const rowOne = cells.slice(0, 10)
-    // const rowTwo = cells.slice(10, 20)
-    // const rowThree = cells.slice(20, 30)
-    // const rowFour = cells.slice(30, 40)
-    // const rowFive = cells.slice(40, 50)
-    // const rowSix = cells.slice(50, 60)
-    // const rowSeven = cells.slice(60, 70)
-    // const rowEight = cells.slice(70, 80)
-    // const rowNine = cells.slice(80, 90)
-    // const rowTen = cells.slice(90, 100)
-    // console.log(rowOne[0])
+    let rowOne = cells.slice(0, 10)
+    const rowTwo = cells.slice(10, 20)
+    const rowThree = cells.slice(20, 30)
+    const rowFour = cells.slice(30, 40)
+    const rowFive = cells.slice(40, 50)
+    const rowSix = cells.slice(50, 60)
+    const rowSeven = cells.slice(60, 70)
+    const rowEight = cells.slice(70, 80)
+    const rowNine = cells.slice(80, 90)
+    const rowTen = cells.slice(90, 100)
+    console.log(rowOne[0])
 
     // function moveRow() {
+
     moveRow = setInterval(() => {
-      // function move() => {
-      for (let i = 4; i < 0; i++) {
-        cells[i].classList.remove(covid19Class)
-        cells[i - 1].classList.add(covid19Class)
-      }
+      rowOne.forEach((cell, index) => {
+        if (cell.className === covid19Class) {
+          rowOne[index].classList.remove(covid19Class)
+          rowOne[index - 1].classList.add(covid19Class)
+        }
+        console.log(rowOne)
+        // else if (rowOne[4] === 0) {
+        //   rowOne.classList.remove(covid19Class)
+        //   rowOne = rowTwo
+        // }
+        // console.log(rowOne[4])
+
+      })
     }, 2000)
+
+    // moveRow = setInterval(() => {
+    //   // function move() => {
+    //   for (let i = 0; i < 10; i++) {
+    //     cells[i].classList.remove(covid19Class)
+    //     if (cells.className === covid19Class) {
+    //       cells[i - 1].classList.add(covid19Class)
+    //     }
+    //   }
+    // }, 2000)
     // for (let i = 4; i < 10; i++) {
     //   cells[i].classList.add(covid19Class)
     // }
@@ -125,7 +144,7 @@ function init() {
   document.addEventListener('keydown', handleKeyDown)
   createGrid(syringeStartPosition)
   addCovid19()
-  moveRow()
+  // moveRow()
 
 }
 
