@@ -72,7 +72,6 @@ function init() {
   function moveFormation() {
     setInterval(() => {
       let direction = 1
-
       for (let i = 89; i > 0; i--) {
         if (cells[i].className === covid19Class) {
           cells[i].classList.remove(covid19Class)
