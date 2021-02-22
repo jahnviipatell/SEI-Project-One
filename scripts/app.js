@@ -75,102 +75,106 @@ function init() {
   // const direction = true
   // let count = 0
 
-  function moveDown() {
-    for (let i = 89; i > 0; i--) {
-      if (cells[i].className === covid19Class) {
-        cells[i].classList.remove(covid19Class)
-        cells[i + 10].classList.add(covid19Class)
-      }
-    }
-  }
+  // function moveDown() {
+  //   for (let i = 89; i > 0; i--) {
+  //     if (cells[i].className === covid19Class) {
+  //       cells[i].classList.remove(covid19Class)
+  //       cells[i + 10].classList.add(covid19Class)
+  //     }
+  //   }
+  // }
 
-  function moveLeft() {
-    for (let i = 0; i < 1; i++) {
-      cells.forEach((cell, index) => {
-        if (cell.className === covid19Class) {
-          cells[index].classList.remove(covid19Class)
-          cells[index - 1].classList.add(covid19Class)
-        }
-      })
-    }
-  }
+  // function moveLeft() {
+  //   for (let i = 0; i < 1; i++) {
+  //     cells.forEach((cell, index) => {
+  //       if (cell.className === covid19Class) {
+  //         cells[index].classList.remove(covid19Class)
+  //         cells[index - 1].classList.add(covid19Class)
+  //       }
+  //     })
+  //   }
+  // }
 
-  function moveRight() {
-    for (let i = 0; i < 1; i++) {
-      cells.forEach((cell, index) => {
-        if (cell.className === covid19Class) {
-          cells[index].classList.remove(covid19Class)
-          cells[index + 1].classList.add(covid19Class)
-        }
-      })
-    }
-  }
+  // function moveRight() {
+  //   for (let i = 0; i < 1; i++) {
+  //     cells.forEach((cell, index) => {
+  //       if (cell.className === covid19Class) {
+  //         cells[index].classList.remove(covid19Class)
+  //         cells[index + 1].classList.add(covid19Class)
+  //       }
+  //     })
+  //   }
+  // }
 
 
-  let direction = true
-  let count = 0
-
-  function formation() {
-    setInterval(() => {
-      if (count === 5) {
-        return moveDown()
-        direction !== direction
-      } else if (direction === true) {
-        return moveLeft()
-        count = count + 1
-      } else if (direction === false) {
-        return moveRight()
-        count = count + 1
-      } else {
-        console.log('something has gone wrong!')
-      }
-    }, 2000)
-  }
-
-  //! first version
   // let direction = true
   // let count = 0
 
-  // function moveFormation() {
+  // function formation() {
   //   setInterval(() => {
-  //     for (let i = 89; i > 0; i--) {
-  //       // console.log(count)
-  //       if (count === 4) {
-  //         if (cells[i].className === covid19Class) {
-  //           cells[i].classList.remove(covid19Class)
-  //           cells[i + 10].classList.add(covid19Class)
-  //         }
-  //         direction !== direction
-  //       }
-  //     } if (direction === true) {
-  //       for (let i = 0; i < 1; i++) {
-  //         cells.forEach((cell, index) => {
-  //           if (cell.className === covid19Class) {
-  //             cells[index].classList.remove(covid19Class)
-  //             cells[index - 1].classList.add(covid19Class)
-  //           }
-  //         })
-  //         // direction = 0
-  //         count = count + 1
-  //         console.log(count)
-  //       }
+  //     if (count === 5) {
+  //       return moveDown()
+  //       direction !== direction
+  //     } else if (direction === true) {
+  //       return moveLeft()
+  //       count = count + 1
   //     } else if (direction === false) {
-  //       for (let i = 0; i < 1; i++) {
-  //         cells.forEach((cell, index) => {
-  //           if (cell.className === covid19Class) {
-  //             cells[index].classList.remove(covid19Class)
-  //             cells[index + 1].classList.add(covid19Class)
-  //           }
-  //         })
-  //         // direction = 1
-  //         count = count + 1
-  //         console.log(count)
-  //       }
+  //       return moveRight()
+  //       count = count + 1
   //     } else {
-  //       console.log('Something went wrong...')
+  //       console.log('something has gone wrong!')
   //     }
   //   }, 2000)
   // }
+
+  //! first version
+  let xDirection = true
+  let yDirection = true
+  let xCount = 0
+  // let yCount = 0
+
+  function moveFormation() {
+    setInterval(() => {
+      for (let i = 89; i > 0; i--) {
+        if (xCount === 4) {
+          if (cells[i].className === covid19Class) {
+            cells[i].classList.remove(covid19Class)
+            cells[i + 10].classList.add(covid19Class)
+          }
+          xDirection !== xDirection
+          yDirection === false
+        }
+      } if (yDirection === true) {
+        if (xDirection === true) {
+          for (let i = 0; i < 1; i++) {
+            cells.forEach((cell, index) => {
+              if (cell.className === covid19Class) {
+                cells[index].classList.remove(covid19Class)
+                cells[index - 1].classList.add(covid19Class)
+              }
+            })
+            xCount = xCount + 1
+            console.log(xCount)
+          }
+        }
+      } if (yDirection === false) {
+        if (xDirection === false) {
+          for (let i = 0; i < 1; i++) {
+            cells.forEach((cell, index) => {
+              if (cell.className === covid19Class) {
+                cells[index].classList.remove(covid19Class)
+                cells[index + 1].classList.add(covid19Class)
+              }
+            })
+            xCount = xCount + 1
+            console.log(xCount)
+          }
+        }
+      } else {
+        console.log('Something went wrong...')
+      }
+    }, 2000)
+  }
 
 
 
@@ -181,11 +185,11 @@ function init() {
   document.addEventListener('keydown', handleKeyDown)
   createGrid(syringeStartPosition)
   addCovid19()
-  // moveFormation()
-  moveDown()
-  moveLeft()
-  moveRight()
-  formation()
+  moveFormation()
+  // moveDown()
+  // moveLeft()
+  // moveRight()
+  // formation()
 
 
 }
