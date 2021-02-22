@@ -64,6 +64,13 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.grid div.laser {
+  background-image: url('https://vietsens.vn/wp-content/uploads/2018/10/transparent-dividers-vertical-line-2.gif');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 /* .test {
   background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
   background-size: contain;

@@ -12,6 +12,9 @@ function init() {
   const syringeClass = 'syringe'
   const syringeStartPosition = 95
   let syringeCurrentPosition = 95
+  //!Laser
+  let laserPosition = undefined
+  const laserClass = 'laser'
   //! Covid19
   const covid19Class = 'covid19'
   // const covid19StartPosition = 0
@@ -42,9 +45,12 @@ function init() {
       syringeCurrentPosition++
     } else if (key === 37 && syringeCurrentPosition % width !== 0) {
       syringeCurrentPosition--
+    } else if (key === 32 && laserExists === false) {
+      laser()
     } else {
       console.log('INVALID KEY')
     }
+    //! keydown for spacebar call laser function from below
     addSyringe(syringeCurrentPosition)
   }
 
@@ -68,72 +74,34 @@ function init() {
     }
   }
 
+  let laserExists = false
+  //!Laser!
+  function laser() {
+    let laserPosition = syringeCurrentPosition - 10
+    laserExists = true
+    setInterval(() => {
+      if (laserExists === false) {
+        cells[laserPosition].classList.add(laserClass)
+      } else {
+        cells[laserPosition].classList.remove(laserClass)
+        laserPosition = laserPosition - 10
+        cells[laserPosition].classList.add(laserClass)
+      }
+      // console.log(syringeCurrentPosition)
+
+
+    }, 2000)
+  }
+
+
+
+
   //! Move formation
-  //! 1 ==> LEFT
-  //! 0 ==> RIGHT
-
-  // const direction = true
-  // let count = 0
-
-  // function moveDown() {
-  //   for (let i = 89; i > 0; i--) {
-  //     if (cells[i].className === covid19Class) {
-  //       cells[i].classList.remove(covid19Class)
-  //       cells[i + 10].classList.add(covid19Class)
-  //     }
-  //   }
-  // }
-
-  // function moveLeft() {
-  //   for (let i = 0; i < 1; i++) {
-  //     cells.forEach((cell, index) => {
-  //       if (cell.className === covid19Class) {
-  //         cells[index].classList.remove(covid19Class)
-  //         cells[index - 1].classList.add(covid19Class)
-  //       }
-  //     })
-  //   }
-  // }
-
-  // function moveRight() {
-  //   for (let i = 0; i < 1; i++) {
-  //     cells.forEach((cell, index) => {
-  //       if (cell.className === covid19Class) {
-  //         cells[index].classList.remove(covid19Class)
-  //         cells[index + 1].classList.add(covid19Class)
-  //       }
-  //     })
-  //   }
-  // }
-
-
-  // let direction = true
-  // let count = 0
-
-  // function formation() {
-  //   setInterval(() => {
-  //     if (count === 5) {
-  //       return moveDown()
-  //       direction !== direction
-  //     } else if (direction === true) {
-  //       return moveLeft()
-  //       count = count + 1
-  //     } else if (direction === false) {
-  //       return moveRight()
-  //       count = count + 1
-  //     } else {
-  //       console.log('something has gone wrong!')
-  //     }
-  //   }, 2000)
-  // }
-
-  //! first version
   let xDirection = true
   let xCount = 0
-  // let yCount = 0
 
   function moveFormation() {
-    setInterval(() => {
+    const move = setInterval(() => {
       if (xCount === 4) {
         for (let i = 89; i >= 0; i--) {
           if (cells[i].className === covid19Class) {
@@ -168,8 +136,14 @@ function init() {
           console.log('wrong again')
         }
       }
+      // gameOver()
     }, 2000)
   }
+  //! place this in the gameOver function 
+  // clearInterval(move)
+  // function gameOver() {
+
+  // }
 
 
 
@@ -185,7 +159,7 @@ function init() {
   // moveLeft()
   // moveRight()
   // formation()
-
+  // laser()
 
 }
 
