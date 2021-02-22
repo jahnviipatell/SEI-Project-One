@@ -140,11 +140,11 @@ function init() {
             cells[i].classList.remove(covid19Class)
             cells[i + 10].classList.add(covid19Class)
           }
-          // xCount = 0
         }
-        xDirection !== xDirection
+        xCount = 0
+        xDirection = !xDirection
         console.log(xDirection)
-      } else if (xDirection === true) {
+      } if (xDirection === true) {
         for (let i = 0; i < 1; i++) {
           cells.forEach((cell, index) => {
             if (cell.className === covid19Class) {
@@ -155,7 +155,7 @@ function init() {
           xCount = xCount + 1
           console.log(xCount)
         }
-      } else if (xDirection === false) {
+      } else if (xDirection === false && xCount < 4) {
         for (let i = 0; i < 1; i++) {
           cells.forEach((cell, index) => {
             if (cell.className === covid19Class) {
