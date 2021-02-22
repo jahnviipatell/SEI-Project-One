@@ -75,25 +75,28 @@ function init() {
   }
 
   let laserExists = false
+  const row = cells.slice(10, 89)
   //!Laser!
   function laser() {
     let laserPosition = syringeCurrentPosition - 10
     laserExists = true
-    setInterval(() => {
+    const laserTimer = setInterval(() => {
       if (laserExists === false) {
         cells[laserPosition].classList.add(laserClass)
-      } else {
+      } else if (laserExists === true) {
         cells[laserPosition].classList.remove(laserClass)
         laserPosition = laserPosition - 10
         cells[laserPosition].classList.add(laserClass)
       }
       // console.log(syringeCurrentPosition)
-
-
-    }, 2000)
+      console.log(laserPosition)
+    }, 1000)
   }
 
-
+  // use this to elimate laser after top row - but where?
+  if (laserPosition + 89 > 99) {
+    cells[laserPosition].classList.remove(laserClass)
+  }
 
 
   //! Move formation
