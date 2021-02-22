@@ -135,7 +135,7 @@ function init() {
   function moveFormation() {
     setInterval(() => {
       if (xCount === 4) {
-        for (let i = 89; i > 0; i--) {
+        for (let i = 89; i >= 0; i--) {
           if (cells[i].className === covid19Class) {
             cells[i].classList.remove(covid19Class)
             cells[i + 10].classList.add(covid19Class)
@@ -144,8 +144,8 @@ function init() {
         xCount = 0
         xDirection = !xDirection
         console.log(xDirection)
-      } if (xDirection === true) {
-        for (let i = 0; i < 1; i++) {
+      } else {
+        if (xDirection === true) {
           cells.forEach((cell, index) => {
             if (cell.className === covid19Class) {
               cells[index].classList.remove(covid19Class)
@@ -154,20 +154,19 @@ function init() {
           })
           xCount = xCount + 1
           console.log(xCount)
-        }
-      } else if (xDirection === false && xCount < 4) {
-        for (let i = 0; i < 1; i++) {
-          cells.forEach((cell, index) => {
+        } else if (xDirection === false) {
+          cells.reverse().forEach((cell, index) => {
             if (cell.className === covid19Class) {
               cells[index].classList.remove(covid19Class)
-              cells[index + 1].classList.add(covid19Class)
+              cells[index - 1].classList.add(covid19Class)
             }
           })
           xCount = xCount + 1
           console.log(xCount)
+          cells.reverse()
+        } else {
+          console.log('wrong again')
         }
-      } else {
-        console.log('Something went wrong...')
       }
     }, 2000)
   }
