@@ -129,46 +129,42 @@ function init() {
 
   //! first version
   let xDirection = true
-  let yDirection = true
   let xCount = 0
   // let yCount = 0
 
   function moveFormation() {
     setInterval(() => {
-      for (let i = 89; i > 0; i--) {
-        if (xCount === 4) {
+      if (xCount === 4) {
+        for (let i = 89; i > 0; i--) {
           if (cells[i].className === covid19Class) {
             cells[i].classList.remove(covid19Class)
             cells[i + 10].classList.add(covid19Class)
           }
-          xDirection !== xDirection
-          yDirection === false
+          // xCount = 0
         }
-      } if (yDirection === true) {
-        if (xDirection === true) {
-          for (let i = 0; i < 1; i++) {
-            cells.forEach((cell, index) => {
-              if (cell.className === covid19Class) {
-                cells[index].classList.remove(covid19Class)
-                cells[index - 1].classList.add(covid19Class)
-              }
-            })
-            xCount = xCount + 1
-            console.log(xCount)
-          }
+        xDirection !== xDirection
+        console.log(xDirection)
+      } else if (xDirection === true) {
+        for (let i = 0; i < 1; i++) {
+          cells.forEach((cell, index) => {
+            if (cell.className === covid19Class) {
+              cells[index].classList.remove(covid19Class)
+              cells[index - 1].classList.add(covid19Class)
+            }
+          })
+          xCount = xCount + 1
+          console.log(xCount)
         }
-      } if (yDirection === false) {
-        if (xDirection === false) {
-          for (let i = 0; i < 1; i++) {
-            cells.forEach((cell, index) => {
-              if (cell.className === covid19Class) {
-                cells[index].classList.remove(covid19Class)
-                cells[index + 1].classList.add(covid19Class)
-              }
-            })
-            xCount = xCount + 1
-            console.log(xCount)
-          }
+      } else if (xDirection === false) {
+        for (let i = 0; i < 1; i++) {
+          cells.forEach((cell, index) => {
+            if (cell.className === covid19Class) {
+              cells[index].classList.remove(covid19Class)
+              cells[index + 1].classList.add(covid19Class)
+            }
+          })
+          xCount = xCount + 1
+          console.log(xCount)
         }
       } else {
         console.log('Something went wrong...')
