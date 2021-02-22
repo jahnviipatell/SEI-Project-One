@@ -14,7 +14,7 @@ function init() {
   let syringeCurrentPosition = 95
   //! Covid19
   const covid19Class = 'covid19'
-  const covid19StartPosition = 9
+  // const covid19StartPosition = 0
 
 
   //! Make a grid with syringe
@@ -72,42 +72,105 @@ function init() {
   //! 1 ==> LEFT
   //! 0 ==> RIGHT
 
-  function moveFormation() {
-    let direction = 1
-    let count = 0
-    setInterval(() => {
-      for (let i = 89; i > 0; i--) {
-        if (count === 5) {
-          cells[i].classList.remove(covid19Class)
-          cells[i + 10].classList.add(covid19Class)
-        } if (direction === 1) {
-          for (let i = 0; i < 1; i++) {
-            cells.forEach((cell, index) => {
-              if (cell.className === covid19Class) {
-                cells[index].classList.remove(covid19Class)
-                cells[index - 1].classList.add(covid19Class)
-                direction = 0
-                count = count + 1
-              }
-            })
-          }
-        } else if (direction === 0) {
-          for (let i = 0; i < 1; i++) {
-            cells.forEach((cell, index) => {
-              if (cell.className === covid19Class) {
-                cells[index].classList.remove(covid19Class)
-                cells[index + 1].classList.add(covid19Class)
-                direction = 1
-                count = count + 1
-              }
-            })
-          }
-        } else {
-          console.log('Something went wrong...')
+  // const direction = true
+  // let count = 0
+
+  function moveDown() {
+    for (let i = 89; i > 0; i--) {
+      if (cells[i].className === covid19Class) {
+        cells[i].classList.remove(covid19Class)
+        cells[i + 10].classList.add(covid19Class)
+      }
+    }
+  }
+
+  function moveLeft() {
+    for (let i = 0; i < 1; i++) {
+      cells.forEach((cell, index) => {
+        if (cell.className === covid19Class) {
+          cells[index].classList.remove(covid19Class)
+          cells[index - 1].classList.add(covid19Class)
         }
+      })
+    }
+  }
+
+  function moveRight() {
+    for (let i = 0; i < 1; i++) {
+      cells.forEach((cell, index) => {
+        if (cell.className === covid19Class) {
+          cells[index].classList.remove(covid19Class)
+          cells[index + 1].classList.add(covid19Class)
+        }
+      })
+    }
+  }
+
+
+  let direction = true
+  let count = 0
+
+  function formation() {
+    setInterval(() => {
+      if (count === 5) {
+        return moveDown()
+        direction !== direction
+      } else if (direction === true) {
+        return moveLeft()
+        count = count + 1
+      } else if (direction === false) {
+        return moveRight()
+        count = count + 1
+      } else {
+        console.log('something has gone wrong!')
       }
     }, 2000)
   }
+
+  //! first version
+  // let direction = true
+  // let count = 0
+
+  // function moveFormation() {
+  //   setInterval(() => {
+  //     for (let i = 89; i > 0; i--) {
+  //       // console.log(count)
+  //       if (count === 4) {
+  //         if (cells[i].className === covid19Class) {
+  //           cells[i].classList.remove(covid19Class)
+  //           cells[i + 10].classList.add(covid19Class)
+  //         }
+  //         direction !== direction
+  //       }
+  //     } if (direction === true) {
+  //       for (let i = 0; i < 1; i++) {
+  //         cells.forEach((cell, index) => {
+  //           if (cell.className === covid19Class) {
+  //             cells[index].classList.remove(covid19Class)
+  //             cells[index - 1].classList.add(covid19Class)
+  //           }
+  //         })
+  //         // direction = 0
+  //         count = count + 1
+  //         console.log(count)
+  //       }
+  //     } else if (direction === false) {
+  //       for (let i = 0; i < 1; i++) {
+  //         cells.forEach((cell, index) => {
+  //           if (cell.className === covid19Class) {
+  //             cells[index].classList.remove(covid19Class)
+  //             cells[index + 1].classList.add(covid19Class)
+  //           }
+  //         })
+  //         // direction = 1
+  //         count = count + 1
+  //         console.log(count)
+  //       }
+  //     } else {
+  //       console.log('Something went wrong...')
+  //     }
+  //   }, 2000)
+  // }
 
 
 
@@ -118,7 +181,12 @@ function init() {
   document.addEventListener('keydown', handleKeyDown)
   createGrid(syringeStartPosition)
   addCovid19()
-  moveFormation()
+  // moveFormation()
+  moveDown()
+  moveLeft()
+  moveRight()
+  formation()
+
 
 }
 
