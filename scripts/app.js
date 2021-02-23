@@ -110,34 +110,31 @@ function init() {
     }, 200)
   }
 
-
+  let attackExists = false
   //! Virus Attack!
-  function virusAttack() {
+  function randomVirus() {
+    const randomCell = cells[Math.floor(Math.random() * (cells.length))]
+    let attackPosition = Number(randomCell.innerText) + 10
+    randomCell.id = ('random')
+    console.log(randomCell)
+
     const attackTimer = setInterval(() => {
-      const randomCell = cells[Math.floor(Math.random() * (cells.length))]
-      console.log(randomCell)
-      randomCell.id = ('random')
-      let attackPosition = Number(randomCell.innerText) + 10
-      if (randomCell.className === covid19Class && randomCell.id === ('random')) {
-        console.log('FOUND ONE')
+      if (attackExists === false && randomCell.className === covid19Class && randomCell.id === ('random')) {
+        console.log('FOUND ONE!')
         cells[attackPosition].classList.add(attackClass)
-        if (cells.className === attackClass) {
-          cells[attackPosition].classList.remove(attackClass)
-          attackPosition = attackPosition + 10
-          cells[attackPosition + 10].classList.add(attackClass)
-        } else if (cells.className === syringeClass) {
-          // LOSE LIFE*******************************************
-        } else if (attackPosition - 89 < 10) {
-          cells[attackPosition].classList.remove(attackClass)
-        }
+        attackExists = true
+      } else if (attackExists === true && attackPosition < 90) {
+        cells[attackPosition].classList.remove(attackClass)
+        cells[attackPosition + 10].classList.add(attackClass)
+        attackPosition = attackPosition + 10
+      } else if (attackExists === true && attackPosition >= 90) {
+        cells[attackPosition].classList.remove(attackClass)
+        // clearInterval(attackTimer)
+        attackExists = false
       }
     }, 1000)
   }
 
-  //   cells[attackPosition].classList.add(attackClass)
-  // }
-  // cells[attackPosition].classList.remove(attackClass)
-  // cells[attackPosition + 10].classList.add(attackClass)
   //! Move formation
   let xDirection = true
   let xCount = 0
@@ -188,7 +185,7 @@ function init() {
         }
       }
       // gameOver()
-    }, 1000)
+    }, 2000)
   }
   //! place this in the gameOver function 
   // clearInterval(move)
@@ -206,7 +203,7 @@ function init() {
   createGrid(syringeStartPosition)
   addCovid19()
   moveFormation()
-  virusAttack()
+  randomVirus()
 
   // laser()
   //* when laser active - randomly fires before click event?
