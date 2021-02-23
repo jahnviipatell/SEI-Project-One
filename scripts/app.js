@@ -83,12 +83,16 @@ function init() {
     laserExists = true
     const laserTimer = setInterval(() => {
       if (laserExists === false) {
+        //! If a laser doesn't exist add the laser
         cells[laserPosition].classList.add(laserClass)
       } else if (laserExists === true && laserPosition + 89 > 99) {
+        //! Check laser isn't at the top of screen before moving it up one space
         cells[laserPosition].classList.remove(laserClass)
         laserPosition = laserPosition - 10
         cells[laserPosition].classList.add(laserClass)
+
       } else if (laserExists === true && laserPosition + 89 < 99) {
+        //! Remove laserClass when it reaches the top of the screen and restart interval
         cells[laserPosition].classList.remove(laserClass)
         laserExists = false
         clearInterval(laserTimer)
@@ -118,6 +122,7 @@ function init() {
           cells[i].classList.remove(covid19Class)
           //! INSERT GAME OVER
         }
+      //! Move down every 4 iterations
       if (xCount === 4) {
         for (let i = 89; i >= 0; i--) {
           if (cells[i].className === covid19Class) {
@@ -129,6 +134,7 @@ function init() {
         xDirection = !xDirection
         console.log(xDirection)
       } else {
+        //! Move left or right depending on current direction of movement
         if (xDirection === true) {
           cells.forEach((cell, index) => {
             if (cell.className === covid19Class) {
@@ -149,6 +155,7 @@ function init() {
           console.log(xCount)
           cells.reverse()
         } else {
+          //! When the loop is broken
           console.log('wrong again')
         }
       }
