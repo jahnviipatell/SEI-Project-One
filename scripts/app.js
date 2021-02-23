@@ -112,10 +112,13 @@ function init() {
 
   function moveFormation() {
     const move = setInterval(() => {
-      if (cells.slice(90, 100).className === covid19Class) {
-        cells.slice(90, 100).classList.remove(covid19Class)
-        console.log(cells.slice(90, 100))
-      } if (xCount === 4) {
+      //! To check if bottomRow contains a virus and removes the virus
+      for (let i = 90; i <= 99; i++)
+        if (cells[i].className === covid19Class || syringeClass) {
+          cells[i].classList.remove(covid19Class)
+          //! INSERT GAME OVER
+        }
+      if (xCount === 4) {
         for (let i = 89; i >= 0; i--) {
           if (cells[i].className === covid19Class) {
             cells[i].classList.remove(covid19Class)
