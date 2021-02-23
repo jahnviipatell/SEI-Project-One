@@ -83,10 +83,14 @@ function init() {
     const laserTimer = setInterval(() => {
       if (laserExists === false) {
         cells[laserPosition].classList.add(laserClass)
-      } else if (laserExists === true) {
+      } else if (laserExists === true && laserPosition + 89 > 99) {
         cells[laserPosition].classList.remove(laserClass)
         laserPosition = laserPosition - 10
         cells[laserPosition].classList.add(laserClass)
+      } else if (laserExists === true && laserPosition + 89 < 99) {
+        cells[laserPosition].classList.remove(laserClass)
+        laserExists = false
+        clearInterval(laserTimer)
       }
       // console.log(syringeCurrentPosition)
       console.log(laserPosition)
