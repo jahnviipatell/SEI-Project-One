@@ -17,6 +17,8 @@ function init() {
   const laserClass = 'laser'
   //! Covid19
   const covid19Class = 'covid19'
+  //! Attack
+  const attackClass = 'attack'
 
 
   //! Make a grid with syringe
@@ -107,7 +109,31 @@ function init() {
   }
 
   //! Virus Attack!
+  const virusAttack = setInterval(() => {
+    const randomCell = cells[Math.floor(Math.random() * (cells.length))]
+    console.log(randomCell)
+    // let attackPosition = randomCell + 10
 
+    if (randomCell.className === covid19Class) {
+      for (let i = 0; i < 89; i++) {
+        cells[i + 10].classList.add(attackClass)
+      }
+    }
+
+    // cells[attackPosition].classList.remove(attackClass)
+    // cells[attackPosition + 10].classList.add(attackClass)
+  }, 1000)
+
+
+  // theMole = setInterval(() => {
+  //   randomCell = gridCells[Math.floor(Math.random() * (gridCells.length))]
+  //   const chosenCell = document.getElementById(randomCell)
+  //   console.log(chosenCell)
+  //   chosenCell.classList.add('mole')
+  //   setTimeout(() => {
+  //     chosenCell.classList.remove('mole')
+  //   }, 1000)
+  // }, 2000)
 
   //! Move formation
   let xDirection = true

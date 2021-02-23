@@ -71,6 +71,13 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.grid div.attack {
+  background-image: url('https://tenor.com/view/practice-animation-stick-nodes-dot-circle-gif-16308745');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 /* .test {
   background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
   background-size: contain;
