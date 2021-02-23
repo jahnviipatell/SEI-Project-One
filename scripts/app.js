@@ -26,6 +26,7 @@ function init() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       cell.textContent = i
+      cell.nodeValue = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -108,33 +109,26 @@ function init() {
     }, 200)
   }
 
+
   //! Virus Attack!
-  const virusAttack = setInterval(() => {
-    const randomCell = cells[Math.floor(Math.random() * (cells.length))]
-    console.log(randomCell)
-    // let attackPosition = randomCell + 10
+  function virusAttack() {
+    const attackTimer = setInterval(() => {
+      const randomCell = cells[Math.floor(Math.random() * (cells.length))]
+      console.log(randomCell)
+      randomCell.id = ('random')
+      // let chosenCell = randomCell + 10
 
-    if (randomCell.className === covid19Class) {
-      for (let i = 0; i < 89; i++) {
-        cells[i + 10].classList.add(attackClass)
+      if (randomCell.className === covid19Class && randomCell.id === ('random')) {
+        console.log('FOUND ONE')
+        randomCell.classList.add(laserClass)
       }
-    }
+    }, 1000)
+  }
 
-    // cells[attackPosition].classList.remove(attackClass)
-    // cells[attackPosition + 10].classList.add(attackClass)
-  }, 1000)
-
-
-  // theMole = setInterval(() => {
-  //   randomCell = gridCells[Math.floor(Math.random() * (gridCells.length))]
-  //   const chosenCell = document.getElementById(randomCell)
-  //   console.log(chosenCell)
-  //   chosenCell.classList.add('mole')
-  //   setTimeout(() => {
-  //     chosenCell.classList.remove('mole')
-  //   }, 1000)
-  // }, 2000)
-
+  //   cells[attackPosition].classList.add(attackClass)
+  // }
+  // cells[attackPosition].classList.remove(attackClass)
+  // cells[attackPosition + 10].classList.add(attackClass)
   //! Move formation
   let xDirection = true
   let xCount = 0
@@ -203,11 +197,10 @@ function init() {
   createGrid(syringeStartPosition)
   addCovid19()
   moveFormation()
-  // moveDown()
-  // moveLeft()
-  // moveRight()
-  // formation()
+  virusAttack()
+
   // laser()
+  //* when laser active - randomly fires before click event?
 
 }
 
