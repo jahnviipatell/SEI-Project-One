@@ -19,6 +19,7 @@ function init() {
   const covid19Class = 'covid19'
   //! Attack
   const attackClass = 'attack'
+  let attackCurrentPosition = 0
 
 
   //! Make a grid with syringe
@@ -116,11 +117,19 @@ function init() {
       const randomCell = cells[Math.floor(Math.random() * (cells.length))]
       console.log(randomCell)
       randomCell.id = ('random')
-      // let chosenCell = randomCell + 10
-
+      let attackPosition = Number(randomCell.innerText) + 10
       if (randomCell.className === covid19Class && randomCell.id === ('random')) {
         console.log('FOUND ONE')
-        randomCell.classList.add(laserClass)
+        cells[attackPosition].classList.add(attackClass)
+        if (cells.className === attackClass) {
+          cells[attackPosition].classList.remove(attackClass)
+          attackPosition = attackPosition + 10
+          cells[attackPosition + 10].classList.add(attackClass)
+        } else if (cells.className === syringeClass) {
+          // LOSE LIFE*******************************************
+        } else if (attackPosition - 89 < 10) {
+          cells[attackPosition].classList.remove(attackClass)
+        }
       }
     }, 1000)
   }
