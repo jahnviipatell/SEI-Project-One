@@ -29,6 +29,8 @@ function init() {
       cells.push(cell)
     }
     addSyringe(syringeStartPosition)
+    // For move function to stop
+    const bottomRow = cells.slice(90, 100)
   }
 
   function addSyringe(position) {
@@ -75,7 +77,6 @@ function init() {
   }
 
   let laserExists = false
-  const row = cells.slice(10, 89)
   //!Laser!
   function laser() {
     let laserPosition = syringeCurrentPosition - 10
@@ -98,18 +99,23 @@ function init() {
   }
 
   // use this to elimate laser after top row - but where?
-  if (laserPosition + 89 > 99) {
-    cells[laserPosition].classList.remove(laserClass)
-  }
+  // if (laserPosition + 89 > 99) {
+  //   cells[laserPosition].classList.remove(laserClass)
+  // }
 
 
   //! Move formation
   let xDirection = true
   let xCount = 0
 
+  // let yCount = 0
+
   function moveFormation() {
     const move = setInterval(() => {
-      if (xCount === 4) {
+      if (cells.slice(90, 100).className === covid19Class) {
+        cells.slice(90, 100).classList.remove(covid19Class)
+        console.log(cells.slice(90, 100))
+      } if (xCount === 4) {
         for (let i = 89; i >= 0; i--) {
           if (cells[i].className === covid19Class) {
             cells[i].classList.remove(covid19Class)
@@ -144,7 +150,7 @@ function init() {
         }
       }
       // gameOver()
-    }, 2000)
+    }, 200)
   }
   //! place this in the gameOver function 
   // clearInterval(move)
