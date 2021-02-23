@@ -13,11 +13,10 @@ function init() {
   const syringeStartPosition = 95
   let syringeCurrentPosition = 95
   //!Laser
-  let laserPosition = undefined
+  // const laserPosition = undefined
   const laserClass = 'laser'
   //! Covid19
   const covid19Class = 'covid19'
-  // const covid19StartPosition = 0
 
 
   //! Make a grid with syringe
@@ -29,8 +28,6 @@ function init() {
       cells.push(cell)
     }
     addSyringe(syringeStartPosition)
-    // For move function to stop
-    const bottomRow = cells.slice(90, 100)
   }
 
   function addSyringe(position) {
@@ -88,9 +85,16 @@ function init() {
       } else if (laserExists === true && laserPosition + 89 > 99) {
         //! Check laser isn't at the top of screen before moving it up one space
         cells[laserPosition].classList.remove(laserClass)
-        laserPosition = laserPosition - 10
-        cells[laserPosition].classList.add(laserClass)
-
+        if (cells[laserPosition].className !== covid19Class) {
+          laserPosition = laserPosition - 10
+          cells[laserPosition].classList.add(laserClass)
+        } else {
+          clearInterval(laserTimer)
+          cells[laserPosition].classList.remove(laserClass)
+          cells[laserPosition].classList.remove(covid19Class)
+          laserExists = false
+          // ADD POINTS TO SCORE BOARD*********************************
+        }
       } else if (laserExists === true && laserPosition + 89 < 99) {
         //! Remove laserClass when it reaches the top of the screen and restart interval
         cells[laserPosition].classList.remove(laserClass)
@@ -99,28 +103,23 @@ function init() {
       }
       // console.log(syringeCurrentPosition)
       console.log(laserPosition)
-    }, 1000)
+    }, 200)
   }
 
-  // use this to elimate laser after top row - but where?
-  // if (laserPosition + 89 > 99) {
-  //   cells[laserPosition].classList.remove(laserClass)
-  // }
+  //! Virus Attack!
 
 
   //! Move formation
   let xDirection = true
   let xCount = 0
 
-  // let yCount = 0
-
   function moveFormation() {
     const move = setInterval(() => {
       //! To check if bottomRow contains a virus and removes the virus
-      for (let i = 90; i <= 99; i++)
+      for (let i = 89; i <= 99; i++)
         if (cells[i].className === covid19Class || syringeClass) {
           cells[i].classList.remove(covid19Class)
-          //! INSERT GAME OVER
+          // INSERT GAME OVER******************************
         }
       //! Move down every 4 iterations
       if (xCount === 4) {
@@ -160,7 +159,7 @@ function init() {
         }
       }
       // gameOver()
-    }, 200)
+    }, 1000)
   }
   //! place this in the gameOver function 
   // clearInterval(move)
