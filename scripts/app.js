@@ -29,8 +29,6 @@ function init() {
   let attackCurrentPosition = 0
 
 
-
-
   //! Make a grid with syringe
   function createGrid(syringeStartPosition) {
     for (let i = 0; i < cellCount; i++) {
@@ -50,6 +48,12 @@ function init() {
     cells[position].classList.remove(syringeClass)
   }
   //! Syringe movement
+  function handleKeyMovement(event) {
+    let keyDown = event.keyCode
+    if (keyDown === 32) {
+      event.preventDefault()
+    }
+  }
   function handleKeyDown(event) {
     const key = event.keyCode
     removeSyringe(syringeCurrentPosition)
@@ -65,6 +69,13 @@ function init() {
     //! keydown for spacebar call laser function from below
     addSyringe(syringeCurrentPosition)
   }
+  document.addEventListener('keyup', handleKeyDown)
+  document.addEventListener('keydown', handleKeyMovement)
+  createGrid(syringeStartPosition)
+
+  // function GAME() {
+  //   const resetGame = setInterval(() => {
+
 
   //! Add formation of virus
   function addCovid19() {
@@ -85,6 +96,7 @@ function init() {
       cells[i].classList.add(covid19Class)
     }
   }
+
 
   //   //! Score
   function scorePoints() {
@@ -121,72 +133,47 @@ function init() {
         laserExists = false
         clearInterval(laserTimer)
       }
-      // console.log(syringeCurrentPosition)
       console.log(laserPosition)
     }, 200)
   }
 
 
-  let attackExists = false
-  // //! Virus Attack!
+  // let attackExists = false
+  // // //! Virus Attack!
   // function virusAttack() {
+
 
   //   const attackTimer = setInterval(() => {
   //     const randomCell = cells[Math.floor(Math.random() * (cells.length))]
+  //     console.log(randomCell)
   //     randomCell.id = ('random')
   //     let attackPosition = Number(randomCell.innerText) + 10
-  //     console.log(randomCell)
-  //     // attackExists = true
-  //     //! check cell has covid & has random ID
-  //     if (attackExists === false && randomCell.className === covid19Class && randomCell.id === ('random')) {
-  //       console.log('FOUND ONE!')
-  //       if (cells[attackPosition].className !== covid19Class) {
+  //     attackExists = true
+
+  //     if (attackExists === false) {
+  //       if (randomCell.className === covid19Class && randomCell.id === ('random')) {
+  //         console.log('FOUND ONE')
   //         cells[attackPosition].classList.add(attackClass)
-  //         attackExists = true
+  //         // attackExists = true
   //       }
   //     } else if (attackExists === true) {
-  //       if (cells[attackPosition].className === covid19Class) {
-  //         attackPosition = attackPosition + 10
-  //         if (cells[attackPosition].className !== covid19Class) {
-  //           cells[attackPosition + 10].classList.add(attackClass)
-  //           attackPosition = attackPosition + 10
-  //           attackExists = true
-  //         }
-  //       }
+  //       cells[attackPosition].classList.remove(attackClass)
+  //       // attackPosition = attackPosition + 10
+  //       // cells[attackPosition + 10].classList.add(attackClass)
   //     }
-  //   }, 500)
+  //     // if (cells.className === attackClass) {
+  //     //   
+  //     // } else if (cells.className === syringeClass) {
+  //     //   // LOSE LIFE*******************************************
+  //     // } else if (attackPosition - 89 < 10) {
+  //     //   cells[attackPosition].classList.remove(attackClass)
+  //     // }
+
+  //   }, 400)
   // }
 
 
 
-  // } else if (attackExists === true && attackPosition < 90) {
-  //   cells[attackPosition].classList.remove(attackClass)
-  // if (cells[attackPosition].className !== covid19Class) {
-  //   attackPosition = attackPosition + 10
-  //   cells[attackPosition].classList.add(attackClass)
-  // } else {
-  //   clearInterval(attackTimer)
-  //   cells[attackPosition].classList.remove(attackClass)
-  // }
-  // attackExists = false
-
-  //   cells[attackPosition + 10].classList.add(attackClass)
-  //   attackPosition = attackPosition + 10        }
-
-  // // 
-  // if (attackExists === false && randomCell.className === covid19Class && randomCell.id === ('random')) {
-  // console.log('FOUND ONE!')
-  // cells[attackPosition].classList.add(attackClass)
-  // attackExists = true
-  // } else if (attackExists === true && attackPosition < 90) {
-  // //   cells[attackPosition].classList.remove(attackClass)
-  // //   cells[attackPosition + 10].classList.add(attackClass)
-  // //   attackPosition = attackPosition + 10
-  // // } else if (attackExists === true && attackPosition >= 90) {
-  // //   cells[attackPosition].classList.remove(attackClass)
-  // //   // clearInterval(attackTimer)
-  // //   attackExists = false
-  // // }
 
   //! Move formation
   let xDirection = true
@@ -248,38 +235,27 @@ function init() {
       function gameOver() {
         console.log('Game Over!')
         clearInterval(move)
+        //* ZOOM INTO SCORE?********************
       }
-    }, 200)
+    }, 2000)
   }
-  //! place this in the gameOver function 
-  // clearInterval(move)
-  // function gameOver() {
 
-  // }
-
-
-
-
-
-
-
-  document.addEventListener('keydown', handleKeyDown)
-  createGrid(syringeStartPosition)
-  // laser()
 
   //! START GAME
   function startGame() {
     console.log('Game Started!')
     addCovid19()
     moveFormation()
+    // virusAttack()
   }
   startButton.addEventListener('click', startGame)
 
+  //* RESET GAME BRACKET BELOW
+  // }, 10000)
 
 
 
 
 
 }
-
 window.addEventListener('DOMContentLoaded', init)
