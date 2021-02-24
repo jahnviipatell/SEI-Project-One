@@ -200,7 +200,7 @@ function init() {
         clearInterval(move)
         //* ZOOM INTO SCORE?********************
       }
-    }, 1000)
+    }, 2000)
   }
 
 
@@ -227,10 +227,12 @@ function init() {
 
           //! is even gives approx. 50% probabilty of firing - change this if needed 
           if (cells[i].className === covid19Class && randomNumber % 2 === 0) {
-            cells[attackPosition].classList.add(attackClass)
-            console.log('Fire!')
+            if (cells[attackPosition].className !== covid19Class) {
+              cells[attackPosition].classList.add(attackClass)
+              console.log('Fire!')
+            }
+            attackExists = true
           }
-          attackExists = true
         }
       } else if (attackExists === true && attackPosition < 90) {
         cells[attackPosition].classList.remove(attackClass)
@@ -238,13 +240,14 @@ function init() {
           attackPosition = attackPosition + 10
           cells[attackPosition].classList.add(attackClass)
         }
-      } else if (attackExists === true && attackPosition >= 90) {
+      } else if (attackPosition >= 90) {
         cells[attackPosition].classList.remove(attackClass)
+        attackExists = false
       } else if (cells.className === syringeClass && cells.className === attackClass) {
         //* LOSE LIFE************************************************************************
         console.log('Lose Life!')
+        attackExists = false
       }
-
     }, 1000)
   }
 
