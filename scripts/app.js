@@ -1,6 +1,13 @@
 function init() {
 
   //! Variables
+  //! Start button
+  const startButton = document.querySelector('button')
+  console.log('button')
+  //! Score!
+  const score = document.querySelector('span.points')
+  console.log(score)
+  let currentScore = 0
   //! Grid
   const grid = document.querySelector('.grid')
   const width = 10
@@ -20,6 +27,8 @@ function init() {
   //! Attack
   const attackClass = 'attack'
   let attackCurrentPosition = 0
+
+
 
 
   //! Make a grid with syringe
@@ -77,6 +86,12 @@ function init() {
     }
   }
 
+  //   //! Score
+  function scorePoints() {
+    currentScore = currentScore + 20
+    score.innerText = currentScore
+  }
+
   let laserExists = false
   //!Laser!
   function laser() {
@@ -98,6 +113,7 @@ function init() {
           cells[laserPosition].classList.remove(covid19Class)
           laserExists = false
           // ADD POINTS TO SCORE BOARD*********************************
+          scorePoints()
         }
       } else if (laserExists === true && laserPosition <= 9) {
         //! Remove laserClass when it reaches the top of the screen and restart interval
@@ -178,15 +194,22 @@ function init() {
 
   function moveFormation() {
     const move = setInterval(() => {
+      //! Check for GAME OVER
+      for (let i = 90; i <= 99; i++) {
+        if (cells[i].className === covid19Class && syringeClass) {
+          // clearInterval(move)
+          // console.log('Game Over!')
+          gameOver()
+        }
+      }
       //! To check if bottomRow contains a virus and removes the virus
-      for (let i = 89; i <= 99; i++)
+      for (let i = 90; i <= 99; i++)
         if (cells[i].className === covid19Class || syringeClass) {
           cells[i].classList.remove(covid19Class)
-          // INSERT GAME OVER******************************
         }
       //! Move down every 4 iterations
       if (xCount === 4) {
-        for (let i = 89; i >= 0; i--) {
+        for (let i = 90; i >= 0; i--) {
           if (cells[i].className === covid19Class) {
             cells[i].classList.remove(covid19Class)
             cells[i + 10].classList.add(covid19Class)
@@ -221,8 +244,12 @@ function init() {
           console.log('wrong again')
         }
       }
-      // gameOver()
-    }, 2000)
+      // !GAME OVER!
+      function gameOver() {
+        console.log('Game Over!')
+        clearInterval(move)
+      }
+    }, 200)
   }
   //! place this in the gameOver function 
   // clearInterval(move)
@@ -238,12 +265,20 @@ function init() {
 
   document.addEventListener('keydown', handleKeyDown)
   createGrid(syringeStartPosition)
-  addCovid19()
-  moveFormation()
-  virusAttack()
-
   // laser()
-  //* when laser active - randomly fires before click event?
+
+  //! START GAME
+  function startGame() {
+    console.log('Game Started!')
+    addCovid19()
+    moveFormation()
+  }
+  startButton.addEventListener('click', startGame)
+
+
+
+
+
 
 }
 
