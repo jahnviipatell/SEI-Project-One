@@ -138,43 +138,6 @@ function init() {
   }
 
 
-  // let attackExists = false
-  // // //! Virus Attack!
-  // function virusAttack() {
-
-
-  //   const attackTimer = setInterval(() => {
-  //     const randomCell = cells[Math.floor(Math.random() * (cells.length))]
-  //     console.log(randomCell)
-  //     randomCell.id = ('random')
-  //     let attackPosition = Number(randomCell.innerText) + 10
-  //     attackExists = true
-
-  //     if (attackExists === false) {
-  //       if (randomCell.className === covid19Class && randomCell.id === ('random')) {
-  //         console.log('FOUND ONE')
-  //         cells[attackPosition].classList.add(attackClass)
-  //         // attackExists = true
-  //       }
-  //     } else if (attackExists === true) {
-  //       cells[attackPosition].classList.remove(attackClass)
-  //       // attackPosition = attackPosition + 10
-  //       // cells[attackPosition + 10].classList.add(attackClass)
-  //     }
-  //     // if (cells.className === attackClass) {
-  //     //   
-  //     // } else if (cells.className === syringeClass) {
-  //     //   // LOSE LIFE*******************************************
-  //     // } else if (attackPosition - 89 < 10) {
-  //     //   cells[attackPosition].classList.remove(attackClass)
-  //     // }
-
-  //   }, 400)
-  // }
-
-
-
-
   //! Move formation
   let xDirection = true
   let xCount = 0
@@ -237,7 +200,30 @@ function init() {
         clearInterval(move)
         //* ZOOM INTO SCORE?********************
       }
-    }, 2000)
+    }, 1000)
+  }
+
+  // let randomCell = 0
+  // // const randomCell = (cells[Math.floor(Math.random()) * (cells.length)])
+  // let randomNumber = 0
+  // console.log(randomCell)
+  const randomCell = cells[Math.floor(Math.random() * (cells.length))]
+  console.log(randomCell)
+  const randomNumber = randomCell.innerText
+  console.log(randomNumber)
+  // //! Virus Attack!
+  function virusAttack() {
+    const attackTimer = setInterval(() => {
+      cells.forEach(() => {
+        if (cells.classList === covid19Class) {
+
+          if (randomCell > 50) {
+            cells.classList.add(attackClass)
+            console.log('Fire!')
+          }
+        }
+      })
+    }, 500)
   }
 
 
@@ -246,7 +232,7 @@ function init() {
     console.log('Game Started!')
     addCovid19()
     moveFormation()
-    // virusAttack()
+    virusAttack()
   }
   startButton.addEventListener('click', startGame)
 
