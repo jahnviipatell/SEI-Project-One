@@ -200,13 +200,14 @@ function init() {
         clearInterval(move)
         //* ZOOM INTO SCORE?********************
       }
-    }, 2000)
+    }, 3000)
   }
 
 
   let randomCell = 0
   let attackExists = false
   let attackPosition = 0
+  let attackCheck = 0
 
   // console.log(randomCell.innerText)
   // //! Virus Attack!
@@ -216,38 +217,42 @@ function init() {
     let randomNumber = Number(randomCell.innerText)
     console.log(randomNumber)
     attackPosition = randomNumber + 10
+    attackCheck = Number(attackPosition) + 10
 
     const attackTimer = setInterval(() => {
 
       if (attackExists === false) {
-        for (let i = 99; i > 0; i--) {
-          randomCell = cells[Math.floor(Math.random() * (cells.length))]
-          console.log(randomCell)
-          randomNumber = Number(randomCell.innerText)
+        randomCell = cells[Math.floor(Math.random() * (cells.length))]
+        console.log(randomCell)
+        randomNumber = Number(randomCell.innerText)
 
-          //! is even gives approx. 50% probabilty of firing - change this if needed 
-          if (cells[i].className === covid19Class && randomNumber % 2 === 0) {
-            if (cells[attackPosition].className !== covid19Class) {
-              cells[attackPosition].classList.add(attackClass)
-              console.log('Fire!')
-            }
-            attackExists = true
+        //! is even gives approx. 50% probabilty of firing - change this if needed 
+        if (randomCell.className === covid19Class && randomNumber % 2 === 0) {
+          if (cells[attackCheck].className !== covid19Class) {
+            cells[attackPosition].classList.add(attackClass)
+            console.log('Fire!')
           }
+          attackExists = true
         }
-      } else if (attackExists === true && attackPosition < 90) {
-        cells[attackPosition].classList.remove(attackClass)
-        if (cells[attackPosition].className !== covid19Class) {
+      } else if (attackExists === true) {
+        if (attackPosition < 90) {
+          cells[attackPosition].classList.remove(attackClass)
+          // if (cells[attackPosition].className !== covid19Class) {
           attackPosition = attackPosition + 10
           cells[attackPosition].classList.add(attackClass)
+          // }
+        } else {
+          cells[attackPosition].classList.remove(attackClass)
+          attackExists = false
         }
-      } else if (attackPosition >= 90) {
-        cells[attackPosition].classList.remove(attackClass)
-        attackExists = false
       } else if (cells.className === syringeClass && cells.className === attackClass) {
         //* LOSE LIFE************************************************************************
         console.log('Lose Life!')
         attackExists = false
+      } else {
+        console.log('WRONG!')
       }
+
     }, 1000)
   }
 
