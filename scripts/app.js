@@ -203,28 +203,35 @@ function init() {
     }, 1000)
   }
 
-  // let randomCell = 0
-  // // const randomCell = (cells[Math.floor(Math.random()) * (cells.length)])
-  // let randomNumber = 0
-  // console.log(randomCell)
-  const randomCell = cells[Math.floor(Math.random() * (cells.length))]
-  console.log(randomCell)
-  const randomNumber = randomCell.innerText
-  console.log(randomNumber)
+
+  let randomCell = 0
+  attackExists = false
+  // console.log(randomCell.innerText)
   // //! Virus Attack!
   function virusAttack() {
-    const attackTimer = setInterval(() => {
-      cells.forEach(() => {
-        if (cells.classList === covid19Class) {
+    let randomCell = cells[Math.floor(Math.random() * (cells.length))]
+    // console.log(randomCell)
+    let randomNumber = Number(randomCell.innerText)
+    console.log(randomNumber)
 
-          if (randomCell > 50) {
-            cells.classList.add(attackClass)
+    const attackTimer = setInterval(() => {
+      let attackPosition = randomNumber + 10
+
+      if (attackExists === false) {
+        for (let i = 99; i > 0; i--) {
+          randomCell = cells[Math.floor(Math.random() * (cells.length))]
+          randomNumber = Number(randomCell.innerText)
+          if (cells[i].className === covid19Class && randomCell.innerText > 50) {
+            cells[attackPosition].classList.add(attackClass)
             console.log('Fire!')
           }
+          attackExists = true
         }
-      })
-    }, 500)
+      }
+
+    }, 1000)
   }
+
 
 
   //! START GAME
@@ -233,6 +240,7 @@ function init() {
     addCovid19()
     moveFormation()
     virusAttack()
+
   }
   startButton.addEventListener('click', startGame)
 
