@@ -59,7 +59,8 @@ h1 {
   cursor: pointer;
 }
 .grid div.covid19 {
-  background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
+  /* background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif'); */
+  background-image: url('https://media.giphy.com/media/ieJMJGqJWIoyuCzdDj/giphy.gif');
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;

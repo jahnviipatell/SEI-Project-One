@@ -86,7 +86,7 @@ function init() {
       if (laserExists === false) {
         //! If a laser doesn't exist add the laser
         cells[laserPosition].classList.add(laserClass)
-      } else if (laserExists === true && laserPosition + 89 > 99) {
+      } else if (laserExists === true && laserPosition > 9) {
         //! Check laser isn't at the top of screen before moving it up one space
         cells[laserPosition].classList.remove(laserClass)
         if (cells[laserPosition].className !== covid19Class) {
@@ -99,7 +99,7 @@ function init() {
           laserExists = false
           // ADD POINTS TO SCORE BOARD*********************************
         }
-      } else if (laserExists === true && laserPosition + 89 < 99) {
+      } else if (laserExists === true && laserPosition <= 9) {
         //! Remove laserClass when it reaches the top of the screen and restart interval
         cells[laserPosition].classList.remove(laserClass)
         laserExists = false
@@ -110,30 +110,67 @@ function init() {
     }, 200)
   }
 
-  let attackExists = false
-  //! Virus Attack!
-  function randomVirus() {
-    const randomCell = cells[Math.floor(Math.random() * (cells.length))]
-    let attackPosition = Number(randomCell.innerText) + 10
-    randomCell.id = ('random')
-    console.log(randomCell)
 
-    const attackTimer = setInterval(() => {
-      if (attackExists === false && randomCell.className === covid19Class && randomCell.id === ('random')) {
-        console.log('FOUND ONE!')
-        cells[attackPosition].classList.add(attackClass)
-        attackExists = true
-      } else if (attackExists === true && attackPosition < 90) {
-        cells[attackPosition].classList.remove(attackClass)
-        cells[attackPosition + 10].classList.add(attackClass)
-        attackPosition = attackPosition + 10
-      } else if (attackExists === true && attackPosition >= 90) {
-        cells[attackPosition].classList.remove(attackClass)
-        // clearInterval(attackTimer)
-        attackExists = false
-      }
-    }, 1000)
-  }
+  let attackExists = false
+  // //! Virus Attack!
+  // function virusAttack() {
+
+  //   const attackTimer = setInterval(() => {
+  //     const randomCell = cells[Math.floor(Math.random() * (cells.length))]
+  //     randomCell.id = ('random')
+  //     let attackPosition = Number(randomCell.innerText) + 10
+  //     console.log(randomCell)
+  //     // attackExists = true
+  //     //! check cell has covid & has random ID
+  //     if (attackExists === false && randomCell.className === covid19Class && randomCell.id === ('random')) {
+  //       console.log('FOUND ONE!')
+  //       if (cells[attackPosition].className !== covid19Class) {
+  //         cells[attackPosition].classList.add(attackClass)
+  //         attackExists = true
+  //       }
+  //     } else if (attackExists === true) {
+  //       if (cells[attackPosition].className === covid19Class) {
+  //         attackPosition = attackPosition + 10
+  //         if (cells[attackPosition].className !== covid19Class) {
+  //           cells[attackPosition + 10].classList.add(attackClass)
+  //           attackPosition = attackPosition + 10
+  //           attackExists = true
+  //         }
+  //       }
+  //     }
+  //   }, 500)
+  // }
+
+
+
+  // } else if (attackExists === true && attackPosition < 90) {
+  //   cells[attackPosition].classList.remove(attackClass)
+  // if (cells[attackPosition].className !== covid19Class) {
+  //   attackPosition = attackPosition + 10
+  //   cells[attackPosition].classList.add(attackClass)
+  // } else {
+  //   clearInterval(attackTimer)
+  //   cells[attackPosition].classList.remove(attackClass)
+  // }
+  // attackExists = false
+
+  //   cells[attackPosition + 10].classList.add(attackClass)
+  //   attackPosition = attackPosition + 10        }
+
+  // // 
+  // if (attackExists === false && randomCell.className === covid19Class && randomCell.id === ('random')) {
+  // console.log('FOUND ONE!')
+  // cells[attackPosition].classList.add(attackClass)
+  // attackExists = true
+  // } else if (attackExists === true && attackPosition < 90) {
+  // //   cells[attackPosition].classList.remove(attackClass)
+  // //   cells[attackPosition + 10].classList.add(attackClass)
+  // //   attackPosition = attackPosition + 10
+  // // } else if (attackExists === true && attackPosition >= 90) {
+  // //   cells[attackPosition].classList.remove(attackClass)
+  // //   // clearInterval(attackTimer)
+  // //   attackExists = false
+  // // }
 
   //! Move formation
   let xDirection = true
@@ -203,7 +240,7 @@ function init() {
   createGrid(syringeStartPosition)
   addCovid19()
   moveFormation()
-  randomVirus()
+  virusAttack()
 
   // laser()
   //* when laser active - randomly fires before click event?
