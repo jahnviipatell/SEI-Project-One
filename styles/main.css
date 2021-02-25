@@ -38,17 +38,16 @@ h1 {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
   justify-content: center;
   height: 600px;
-  width: 600px;
+  width: 900px;
 }
 
 .grid div {
   border: 1px solid lightgrey;
   flex-grow: 1;
-  height: 10%;
-  width: 10%;
+  height: 60px;
+  width: 60px;
 }
 
 .grid div.syringe {
@@ -58,13 +57,13 @@ h1 {
   background-position: left;
   cursor: pointer;
 }
- .grid div.covid19 {
-  /* background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
+ /* .grid div.covid19 {
+  background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
   background-image: url('https://media.giphy.com/media/ieJMJGqJWIoyuCzdDj/giphy.gif');
   background-size:cover;
   background-repeat: no-repeat;
-  background-position: center; */
-}
+  background-position: center;
+} */
 
 .grid div.covid20 {
   /* background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif'); */
