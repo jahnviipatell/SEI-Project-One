@@ -255,22 +255,23 @@ function init() {
         }
         if (cells[attackPosition].className === syringeClass) {
           console.log('Lose Life!')
+          lifeCount--
           // //! Lose Life
-          //   // const lives = document.querySelector('#lives')
-          //   // console.log(lives)
-          //   if (lifeCount === 2) {
-          //     // document.querySelector('.life1').innerText = 
-          //   } else if (lifeCount === 1) {
-          //     // lives.classList.remove('life2')
-          //   } else if (lifeCount === 0) {
-          //     // lives.classList.remove('life1')
-          //     clearInterval()
-          //     console.log('GAME OVER!')
-          //     lifeCount = lifeCount - 1
-          //     attackExists = false
-          //   } else {
-          //     console.log('INNER WRONG!')
-          //     }
+          // const lives = document.querySelector('#lives')
+          // console.log(lives)
+          if (lifeCount === 2) {
+            document.querySelector('div.life3').innerText = ('')
+          } else if (lifeCount === 1) {
+            document.querySelector('div.life2').innerText = ('')
+          } else if (lifeCount === 0) {
+            document.querySelector('div.life1').innerText = ('')
+            clearInterval(attackTimer)
+            console.log('GAME OVER!')
+            lifeCount = lifeCount - 1
+            attackExists = false
+          } else {
+            console.log('INNER WRONG!')
+          }
         }
       } else {
         console.log('OUTER WRONG!')
