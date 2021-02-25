@@ -1,6 +1,7 @@
 function init() {
 
   //! Variables
+  // const startGameScreen = document.getElementById('game-screen')
   //! Start button
   const startButton = document.querySelector('button')
   console.log('button')
@@ -101,7 +102,7 @@ function init() {
   }
 
 
-  let covidCount = 28
+  let covidCount = 35
   let laserExists = false
   //!Laser!
   function laser() {
@@ -110,7 +111,7 @@ function init() {
     const laserTimer = setInterval(() => {
       if (covidCount === 0) {
         addCovid19()
-        covidCount = 28
+        covidCount = 35
       } if (laserExists === false) {
         //! If a laser doesn't exist add the laser
         cells[laserPosition].classList.add(laserClass)
@@ -143,7 +144,7 @@ function init() {
         clearInterval(laserTimer)
       }
       // console.log(laserPosition)
-    }, 100)
+    }, 150)
   }
 
 
@@ -242,7 +243,7 @@ function init() {
         clearInterval(move)
         //* ZOOM INTO SCORE?********************
       }
-    }, 1000)
+    }, 700)
   }
 
 
@@ -269,15 +270,15 @@ function init() {
         attackPosition = randomNumber + width
 
         //! is even gives approx. 50% probabilty of firing - change this if needed 
-        if (randomCell.className === covid20Class && randomNumber % 2 === 0 && cells[randomNumber + width].className !== covid21Class) {
+        if (randomCell.className === covid20Class && cells[randomNumber + width].className !== covid21Class) {
           cells[attackPosition].classList.add(attackClass)
           console.log('Fire!')
           attackExists = true
-        } else if (randomCell.className === covid21Class && randomNumber % 2 === 0 && cells[randomNumber + width].className !== covid22Class) {
+        } else if (randomCell.className === covid21Class && cells[randomNumber + width].className !== covid22Class) {
           cells[attackPosition].classList.add(attackClass)
           console.log('Fire!')
           attackExists = true
-        } else if (randomCell.className === covid22Class && randomNumber % 2 === 0 && cells[randomNumber + width].className !== covid21Class) {
+        } else if (randomCell.className === covid22Class && cells[randomNumber + width].className !== covid21Class) {
           cells[attackPosition].classList.add(attackClass)
           console.log('Fire!')
           attackExists = true
@@ -323,9 +324,13 @@ function init() {
     addCovid19()
     moveFormation()
     virusAttack()
+    // startGameScreen.style.visibility = 'hidden'
+    // startGameScreen.style.top = height
 
   }
   startButton.addEventListener('click', startGame)
+
+
 
 }
 window.addEventListener('DOMContentLoaded', init)
