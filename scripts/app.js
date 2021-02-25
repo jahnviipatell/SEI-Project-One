@@ -200,7 +200,7 @@ function init() {
         clearInterval(move)
         //* ZOOM INTO SCORE?********************
       }
-    }, 3000)
+    }, 30000)
   }
 
 
@@ -216,6 +216,8 @@ function init() {
     // console.log(randomCell)
     let randomNumber = Number(randomCell.innerText)
     console.log(randomNumber)
+    let lifeCount = 3
+
 
     const attackTimer = setInterval(() => {
 
@@ -243,7 +245,19 @@ function init() {
           cells[attackPosition].classList.remove(attackClass)
           attackExists = false
         } else if (cells.className === syringeClass && cells.className === attackClass) {
-          //* LOSE LIFE************************************************************************
+          lifeCount = lifeCount - 1
+          //! Lose Life
+          const lives = document.querySelector('#lives')
+          console.log(lives)
+          if (lifeCount === 2) {
+            lives.classList.remove('life3')
+          } else if (lifeCount === 1) {
+            lives.classList.remove('life2')
+          } else if (lifeCount === 0) {
+            lives.classList.remove('life1')
+            clearInterval()
+            console.log('GAME OVER!')
+          }
           console.log('Lose Life!')
           attackExists = false
         } else {
@@ -254,6 +268,22 @@ function init() {
       }
     }, 200)
   }
+
+  // //! Lose Life
+  // function loseLife() {
+  //   let lifeCount = 3
+  //   const lives = document.querySelectorAll('.life')
+  //   // console.log(lives)
+  //   if (lifeCount === 2) {
+  //     lives.pop(2)
+  //   } if (lifeCount === 1) {
+  //     lives.pop
+  //   } if (lifeCount === 0) {
+  //     clearInterval()
+  //     console.log('GAME OVER!')
+  //   }
+  // }
+  // loseLife()
 
 
 
