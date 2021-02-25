@@ -58,9 +58,29 @@ h1 {
   background-position: left;
   cursor: pointer;
 }
-.grid div.covid19 {
+ .grid div.covid19 {
+  /* background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
+  background-image: url('https://media.giphy.com/media/ieJMJGqJWIoyuCzdDj/giphy.gif');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center; */
+}
+
+.grid div.covid20 {
   /* background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif'); */
   background-image: url('https://media.giphy.com/media/ieJMJGqJWIoyuCzdDj/giphy.gif');
+  background-size: 4vh;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.grid div.covid21 {
+  background-image: url('https://media.giphy.com/media/H3H2ll6OgyLGbxEUVX/giphy.gif');
+  background-size: 4vh;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.grid div.covid22 {
+  background-image: url('https://media.giphy.com/media/11vrbmWOsb6toY/giphy.gif');
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -68,13 +88,14 @@ h1 {
 
 .grid div.laser {
   background-image: url('https://vietsens.vn/wp-content/uploads/2018/10/transparent-dividers-vertical-line-2.gif');
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+/* background-image: url('https://media.giphy.com/media/l4joCkAKRgJxJaRk7D/giphy.gif'); */
 
 .grid div.attack {
-  background-image: url('https://vietsens.vn/wp-content/uploads/2018/10/transparent-dividers-vertical-line-2.gif');
+  background-image: url('https://media.giphy.com/media/J1duNk21Kwfk9oMJd4/giphy.gif');
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;

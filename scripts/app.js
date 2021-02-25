@@ -22,7 +22,9 @@ function init() {
   //!Laser
   const laserClass = 'laser'
   //! Covid19
-  const covid19Class = 'covid19'
+  const covid20Class = 'covid20'
+  const covid21Class = 'covid21'
+  const covid22Class = 'covid22'
   //! Attack
   const attackClass = 'attack'
 
@@ -74,20 +76,19 @@ function init() {
   //! Add formation of virus
   function addCovid19() {
     for (let i = 4; i < 10; i++) {
-      cells[i].classList.add(covid19Class)
+      cells[i].classList.add(covid20Class)
     }
-    //! different classes to be added to these for different gifs for each row
     for (let i = 14; i < 20; i++) {
-      cells[i].classList.add(covid19Class)
+      cells[i].classList.add(covid21Class)
     }
     for (let i = 24; i < 30; i++) {
-      cells[i].classList.add(covid19Class)
+      cells[i].classList.add(covid22Class)
     }
     for (let i = 34; i < 40; i++) {
-      cells[i].classList.add(covid19Class)
+      cells[i].classList.add(covid21Class)
     }
     for (let i = 44; i < 50; i++) {
-      cells[i].classList.add(covid19Class)
+      cells[i].classList.add(covid20Class)
     }
   }
 
@@ -115,13 +116,16 @@ function init() {
       } else if (laserExists === true && laserPosition > 9) {
         //! Check laser isn't at the top of screen before moving it up one space
         cells[laserPosition].classList.remove(laserClass)
-        if (cells[laserPosition].className !== covid19Class) {
+        if (cells[laserPosition].className !== covid20Class && cells[laserPosition].className !== covid21Class && cells[laserPosition].className !== covid22Class) {
           laserPosition = laserPosition - 10
           cells[laserPosition].classList.add(laserClass)
         } else {
           clearInterval(laserTimer)
           cells[laserPosition].classList.remove(laserClass)
-          cells[laserPosition].classList.remove(covid19Class)
+          cells[laserPosition].classList.remove(covid20Class)
+          cells[laserPosition].classList.remove(covid21Class)
+          cells[laserPosition].classList.remove(covid22Class)
+
           laserExists = false
           scorePoints()
           covidCount--
@@ -130,12 +134,14 @@ function init() {
       } else if (laserExists === true && laserPosition <= 9) {
         //! Remove laserClass when it reaches the top of the screen and restart interval
         cells[laserPosition].classList.remove(laserClass)
-        cells[laserPosition].classList.remove(covid19Class)
+        cells[laserPosition].classList.remove(covid20Class)
+        cells[laserPosition].classList.remove(covid21Class)
+        cells[laserPosition].classList.remove(covid22Class)
         laserExists = false
         clearInterval(laserTimer)
       }
       // console.log(laserPosition)
-    }, 50)
+    }, 200)
   }
 
 
@@ -147,7 +153,15 @@ function init() {
     const move = setInterval(() => {
       //! Check for GAME OVER
       for (let i = 90; i <= 99; i++) {
-        if (cells[i].className === covid19Class && syringeClass) {
+        if (cells[i].className === covid20Class && cells[i].className === syringeClass) {
+          // clearInterval(move)
+          // console.log('Game Over!')
+          gameOver()
+        } else if (cells[i].className === covid21Class && cells[i].className === syringeClass) {
+          // clearInterval(move)
+          // console.log('Game Over!')
+          gameOver()
+        } else if (cells[i].className === covid22Class && cells[i].className === syringeClass) {
           // clearInterval(move)
           // console.log('Game Over!')
           gameOver()
@@ -155,15 +169,26 @@ function init() {
       }
       //! To check if bottomRow contains a virus and removes the virus
       for (let i = 90; i <= 99; i++)
-        if (cells[i].className === covid19Class || syringeClass) {
-          cells[i].classList.remove(covid19Class)
+        if (cells[i].className === syringeClass || cells[i].className === covid20Class) {
+          cells[i].classList.remove(covid20Class)
+        } else if (cells[i].className === syringeClass || cells[i].className === covid21Class) {
+          cells[i].classList.remove(covid21Class)
+        } else if (cells[i].className === syringeClass || cells[i].className === covid22Class) {
+          cells[i].classList.remove(covid22Class)
         }
+
       //! Move down every 4 iterations
       if (xCount === 4) {
         for (let i = 90; i >= 0; i--) {
-          if (cells[i].className === covid19Class) {
-            cells[i].classList.remove(covid19Class)
-            cells[i + 10].classList.add(covid19Class)
+          if (cells[i].className === covid20Class) {
+            cells[i].classList.remove(covid20Class)
+            cells[i + 10].classList.add(covid20Class)
+          } else if (cells[i].className === covid21Class) {
+            cells[i].classList.remove(covid21Class)
+            cells[i + 10].classList.add(covid21Class)
+          } else if (cells[i].className === covid22Class) {
+            cells[i].classList.remove(covid22Class)
+            cells[i + 10].classList.add(covid22Class)
           }
         }
         xCount = 0
@@ -173,24 +198,36 @@ function init() {
         //! Move left or right depending on current direction of movement
         if (xDirection === true) {
           cells.forEach((cell, index) => {
-            if (cell.className === covid19Class) {
-              cells[index].classList.remove(covid19Class)
-              cells[index - 1].classList.add(covid19Class)
+            if (cell.className === covid20Class) {
+              cells[index].classList.remove(covid20Class)
+              cells[index - 1].classList.add(covid20Class)
+            } else if (cell.className === covid21Class) {
+              cells[index].classList.remove(covid21Class)
+              cells[index - 1].classList.add(covid21Class)
+            } else if (cell.className === covid22Class) {
+              cells[index].classList.remove(covid22Class)
+              cells[index - 1].classList.add(covid22Class)
             }
           })
           xCount = xCount + 1
           // console.log(xCount)
         } else if (xDirection === false) {
           cells.reverse().forEach((cell, index) => {
-            if (cell.className === covid19Class) {
-              cells[index].classList.remove(covid19Class)
-              cells[index - 1].classList.add(covid19Class)
+            if (cell.className === covid20Class) {
+              cells[index].classList.remove(covid20Class)
+              cells[index - 1].classList.add(covid20Class)
+            } else if (cell.className === covid21Class) {
+              cells[index].classList.remove(covid21Class)
+              cells[index - 1].classList.add(covid21Class)
+            } else if (cell.className === covid22Class) {
+              cells[index].classList.remove(covid22Class)
+              cells[index - 1].classList.add(covid22Class)
             }
           })
           xCount = xCount + 1
           // console.log(xCount)
           cells.reverse()
-        } else if (cells !== covid19Class) {
+        } else if (cells !== covid20Class && cells !== covid21Class && cells !== covid22Class) {
           addCovid19()
         } else {
           //! When the loop is broken
@@ -203,7 +240,7 @@ function init() {
         clearInterval(move)
         //* ZOOM INTO SCORE?********************
       }
-    }, 30000)
+    }, 2000)
   }
 
 
@@ -230,7 +267,15 @@ function init() {
         attackPosition = randomNumber + 10
 
         //! is even gives approx. 50% probabilty of firing - change this if needed 
-        if (randomCell.className === covid19Class && randomNumber % 2 === 0 && cells[randomNumber + 10].className !== covid19Class) {
+        if (randomCell.className === covid20Class && randomNumber % 2 === 0 && cells[randomNumber + 10].className !== covid21Class) {
+          cells[attackPosition].classList.add(attackClass)
+          console.log('Fire!')
+          attackExists = true
+        } else if (randomCell.className === covid21Class && randomNumber % 2 === 0 && cells[randomNumber + 10].className !== covid22Class) {
+          cells[attackPosition].classList.add(attackClass)
+          console.log('Fire!')
+          attackExists = true
+        } else if (randomCell.className === covid22Class && randomNumber % 2 === 0 && cells[randomNumber + 10].className !== covid21Class) {
           cells[attackPosition].classList.add(attackClass)
           console.log('Fire!')
           attackExists = true
@@ -279,8 +324,6 @@ function init() {
 
   }
   startButton.addEventListener('click', startGame)
-
-
 
 }
 window.addEventListener('DOMContentLoaded', init)
