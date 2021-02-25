@@ -1,5 +1,12 @@
 * {
   box-sizing: border-box;
+  /* color: white; */
+}
+/* background-image: url('https://media.giphy.com/media/l4KihuqeuJEi9qLSM/giphy.gif'); */
+html {
+  background: white;
+  background-image: url('https://gfycat.com/firsthandyearlyairedaleterrier');
+  background-position: center;
 }
 
 body {
@@ -35,26 +42,28 @@ h1 {
 
 .grid {
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px 0 white;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   height: 600px;
   width: 900px;
+  background:white;
 }
 
 .grid div {
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
   flex-grow: 1;
   height: 60px;
   width: 60px;
+  color: white;
 }
 
 .grid div.syringe {
   background-image: url('../Assets/r903qbml6t0bna7334pu6060ee.png');
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: left;
+  background-position: center;
   cursor: pointer;
 }
  /* .grid div.covid19 {

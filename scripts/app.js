@@ -141,7 +141,7 @@ function init() {
         clearInterval(laserTimer)
       }
       // console.log(laserPosition)
-    }, 200)
+    }, 100)
   }
 
 
@@ -240,7 +240,7 @@ function init() {
         clearInterval(move)
         //* ZOOM INTO SCORE?********************
       }
-    }, 1500)
+    }, 1000)
   }
 
 
