@@ -241,27 +241,29 @@ function init() {
           cells[attackPosition].classList.remove(attackClass)
           attackPosition = attackPosition + 10
           cells[attackPosition].classList.add(attackClass)
-        } else if (attackPosition >= 90) {
-          cells[attackPosition].classList.remove(attackClass)
-          attackExists = false
-        } else if (cells.className === syringeClass && cells.className === attackClass) {
-          lifeCount = lifeCount - 1
-          //! Lose Life
-          const lives = document.querySelector('#lives')
-          console.log(lives)
-          if (lifeCount === 2) {
-            lives.classList.remove('life3')
-          } else if (lifeCount === 1) {
-            lives.classList.remove('life2')
-          } else if (lifeCount === 0) {
-            lives.classList.remove('life1')
-            clearInterval()
-            console.log('GAME OVER!')
+        } if (attackPosition >= 90) {
+          if (cells.className !== syringeClass) {
+            cells[attackPosition].classList.remove(attackClass)
+            attackExists = false
+          } else if (cells.className === syringeClass && cells.className === attackClass) {
+            console.log('Lose Life!')
+            lifeCount = lifeCount - 1
+            //! Lose Life
+            // const lives = document.querySelector('#lives')
+            // console.log(lives)
+            if (lifeCount === 2) {
+              // document.querySelector('.life1').innerText = 
+            } else if (lifeCount === 1) {
+              // lives.classList.remove('life2')
+            } else if (lifeCount === 0) {
+              // lives.classList.remove('life1')
+              clearInterval()
+              console.log('GAME OVER!')
+            }
+            attackExists = false
+          } else {
+            console.log('INNER WRONG!')
           }
-          console.log('Lose Life!')
-          attackExists = false
-        } else {
-          console.log('INNER WRONG!')
         }
       } else {
         console.log('OUTER WRONG!')
