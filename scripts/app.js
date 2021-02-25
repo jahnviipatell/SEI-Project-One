@@ -104,13 +104,18 @@ function init() {
     score.innerText = currentScore
   }
 
+
+  let covidCount = 24
   let laserExists = false
   //!Laser!
   function laser() {
     let laserPosition = syringeCurrentPosition - 10
     laserExists = true
     const laserTimer = setInterval(() => {
-      if (laserExists === false) {
+      if (covidCount === 0) {
+        addCovid19()
+        covidCount = 24
+      } if (laserExists === false) {
         //! If a laser doesn't exist add the laser
         cells[laserPosition].classList.add(laserClass)
       } else if (laserExists === true && laserPosition > 9) {
@@ -126,15 +131,18 @@ function init() {
           laserExists = false
           // ADD POINTS TO SCORE BOARD*********************************
           scorePoints()
+          covidCount--
+          console.log(covidCount)
         }
       } else if (laserExists === true && laserPosition <= 9) {
         //! Remove laserClass when it reaches the top of the screen and restart interval
         cells[laserPosition].classList.remove(laserClass)
+        cells[laserPosition].classList.remove(covid19Class)
         laserExists = false
         clearInterval(laserTimer)
       }
-      console.log(laserPosition)
-    }, 200)
+      // console.log(laserPosition)
+    }, 50)
   }
 
 
@@ -167,7 +175,7 @@ function init() {
         }
         xCount = 0
         xDirection = !xDirection
-        console.log(xDirection)
+        // console.log(xDirection)
       } else {
         //! Move left or right depending on current direction of movement
         if (xDirection === true) {
@@ -178,7 +186,7 @@ function init() {
             }
           })
           xCount = xCount + 1
-          console.log(xCount)
+          // console.log(xCount)
         } else if (xDirection === false) {
           cells.reverse().forEach((cell, index) => {
             if (cell.className === covid19Class) {
@@ -187,8 +195,10 @@ function init() {
             }
           })
           xCount = xCount + 1
-          console.log(xCount)
+          // console.log(xCount)
           cells.reverse()
+        } else if (cells !== covid19Class) {
+          addCovid19()
         } else {
           //! When the loop is broken
           console.log('wrong again')
@@ -207,7 +217,6 @@ function init() {
   let randomCell = 0
   let attackExists = false
   let attackPosition = 0
-  let attackCheck = 0
 
   // console.log(randomCell.innerText)
   // //! Virus Attack!
@@ -215,7 +224,7 @@ function init() {
     let randomCell = cells[Math.floor(Math.random() * (cells.length))]
     // console.log(randomCell)
     let randomNumber = Number(randomCell.innerText)
-    console.log(randomNumber)
+    // console.log(randomNumber)
     let lifeCount = 3
 
 
@@ -223,17 +232,14 @@ function init() {
 
       if (attackExists === false) {
         randomCell = cells[Math.floor(Math.random() * (cells.length))]
-        console.log(randomCell)
+        // console.log(randomCell)
         randomNumber = Number(randomCell.innerText)
         attackPosition = randomNumber + 10
-        // attackCheck = Number(attackPosition) + 10
 
         //! is even gives approx. 50% probabilty of firing - change this if needed 
         if (randomCell.className === covid19Class && randomNumber % 2 === 0 && cells[randomNumber + 10].className !== covid19Class) {
-          // if (cells[randomNumber].className !== covid19Class) {
           cells[attackPosition].classList.add(attackClass)
           console.log('Fire!')
-          // }
           attackExists = true
         }
       } else if (attackExists === true) {
@@ -247,8 +253,7 @@ function init() {
             attackExists = false
           } else if (cells.className === syringeClass && cells.className === attackClass) {
             console.log('Lose Life!')
-            lifeCount = lifeCount - 1
-            //! Lose Life
+            // //! Lose Life
             // const lives = document.querySelector('#lives')
             // console.log(lives)
             if (lifeCount === 2) {
@@ -260,6 +265,7 @@ function init() {
               clearInterval()
               console.log('GAME OVER!')
             }
+            lifeCount = lifeCount - 1
             attackExists = false
           } else {
             console.log('INNER WRONG!')
@@ -270,6 +276,7 @@ function init() {
       }
     }, 200)
   }
+
 
   // //! Lose Life
   // function loseLife() {
