@@ -20,14 +20,11 @@ function init() {
   const syringeStartPosition = 95
   let syringeCurrentPosition = 95
   //!Laser
-  // const laserPosition = undefined
   const laserClass = 'laser'
   //! Covid19
   const covid19Class = 'covid19'
   //! Attack
   const attackClass = 'attack'
-  let attackCurrentPosition = 0
-
 
   //! Make a grid with syringe
   function createGrid(syringeStartPosition) {
@@ -72,9 +69,6 @@ function init() {
   document.addEventListener('keyup', handleKeyDown)
   document.addEventListener('keydown', handleKeyMovement)
   createGrid(syringeStartPosition)
-
-  // function GAME() {
-  //   const resetGame = setInterval(() => {
 
 
   //! Add formation of virus
@@ -129,7 +123,6 @@ function init() {
           cells[laserPosition].classList.remove(laserClass)
           cells[laserPosition].classList.remove(covid19Class)
           laserExists = false
-          // ADD POINTS TO SCORE BOARD*********************************
           scorePoints()
           covidCount--
           console.log(covidCount)
@@ -257,8 +250,6 @@ function init() {
           console.log('Lose Life!')
           lifeCount--
           // //! Lose Life
-          // const lives = document.querySelector('#lives')
-          // console.log(lives)
           if (lifeCount === 2) {
             document.querySelector('div.life3').innerText = ('')
           } else if (lifeCount === 1) {
@@ -279,25 +270,6 @@ function init() {
     }, 200)
   }
 
-
-  // //! Lose Life
-  // function loseLife() {
-  //   let lifeCount = 3
-  //   const lives = document.querySelectorAll('.life')
-  //   // console.log(lives)
-  //   if (lifeCount === 2) {
-  //     lives.pop(2)
-  //   } if (lifeCount === 1) {
-  //     lives.pop
-  //   } if (lifeCount === 0) {
-  //     clearInterval()
-  //     console.log('GAME OVER!')
-  //   }
-  // }
-  // loseLife()
-
-
-
   //! START GAME
   function startGame() {
     console.log('Game Started!')
@@ -307,11 +279,6 @@ function init() {
 
   }
   startButton.addEventListener('click', startGame)
-
-  //* RESET GAME BRACKET BELOW
-  // }, 10000)
-
-
 
 
 
