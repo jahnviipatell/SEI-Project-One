@@ -8,7 +8,7 @@ html {
 #button {
 	background: transparent;
 	color: rgb(0, 0, 0);
-	border: 5px solid rgb(0, 0, 0);
+	border: 5px solid rgb(221, 40, 176);
 	border-radius: 50px;
 	padding: 0.8rem 2rem;
 	font: 14px "Margarine", sans-serif;
@@ -49,7 +49,7 @@ h1 {
 .score {
   width: 200px;
   font-size: 14px;
-  padding-top: 20px;
+  padding-top: 16px;
 }
 #lives {
   display: flex;
