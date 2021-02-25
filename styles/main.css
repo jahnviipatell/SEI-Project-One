@@ -130,6 +130,13 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
 }
+.grid div.splash {
+  background-image: url('https://media.giphy.com/media/Vewm64a9jOVR6zBKre/giphy.gif');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* .test {
   background-image: url('https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif');
   background-size: contain;

@@ -21,6 +21,7 @@ function init() {
   let syringeCurrentPosition = 142
   //!Laser
   const laserClass = 'laser'
+  const splashClass = 'splash'
   //! Covid19
   const covid20Class = 'covid20'
   const covid21Class = 'covid21'
@@ -125,6 +126,7 @@ function init() {
           cells[laserPosition].classList.remove(covid20Class)
           cells[laserPosition].classList.remove(covid21Class)
           cells[laserPosition].classList.remove(covid22Class)
+          // cells[laserPosition].classList.add(splashClass)
 
           laserExists = false
           scorePoints()
