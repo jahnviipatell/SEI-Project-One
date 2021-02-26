@@ -168,7 +168,7 @@ function init() {
         clearInterval(laserTimer)
       }
       // console.log(laserPosition)
-    }, 100)
+    }, 70)
   }
 
 
@@ -268,10 +268,10 @@ function init() {
       function gameOver() {
         console.log('Game Over!')
         clearInterval(move)
-        gameOverScreen.style.display = ''
+        gameOverScreen.style.display = 'block'
         //* ZOOM INTO SCORE?********************
       }
-    }, 700)
+    }, 500)
   }
 
 
