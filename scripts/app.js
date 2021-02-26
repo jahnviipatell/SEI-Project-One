@@ -271,7 +271,7 @@ function init() {
         gameOverScreen.style.display = 'block'
         //* ZOOM INTO SCORE?********************
       }
-    }, 500)
+    }, 600)
   }
 
 
