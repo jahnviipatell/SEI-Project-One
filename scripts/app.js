@@ -35,8 +35,22 @@ function init() {
   const covid22Class = 'covid22'
   //! Attack
   const attackClass = 'attack'
-
-
+  //! Audio
+  const audio = document.getElementById('audio')
+  function playShoot() {
+    audio.src = '/../Assets/Drip-02.wav'
+    audio.play()
+  }
+  const remove = document.getElementById('remove')
+  function playRemove() {
+    remove.src = '/../Assets/SdRemove.wav'
+    remove.play()
+  }
+  const loseLife = document.getElementById('lose-life')
+  function playLoseLife() {
+    loseLife.src = '../Assets/doop2.wav'
+    loseLife.play()
+  }
   //! Make a grid with syringe
   function createGrid(syringeStartPosition) {
     for (let i = 0; i < cellCount; i++) {
@@ -71,6 +85,7 @@ function init() {
       syringeCurrentPosition--
     } else if (key === 32 && laserExists === false) {
       laser()
+      playShoot()
     } else {
       console.log('INVALID KEY')
     }
@@ -106,6 +121,7 @@ function init() {
   function scorePoints() {
     currentScore = currentScore + 20
     score.innerText = currentScore
+    playRemove()
   }
 
 
@@ -147,6 +163,7 @@ function init() {
         cells[laserPosition].classList.remove(covid20Class)
         cells[laserPosition].classList.remove(covid21Class)
         cells[laserPosition].classList.remove(covid22Class)
+        playRemove()
         laserExists = false
         clearInterval(laserTimer)
       }
@@ -311,10 +328,13 @@ function init() {
           // //! Lose Life
           if (lifeCount === 2) {
             document.querySelector('div.life3').innerText = ('')
+            playLoseLife()
           } else if (lifeCount === 1) {
             document.querySelector('div.life2').innerText = ('')
+            playLoseLife()
           } else if (lifeCount === 0) {
             document.querySelector('div.life1').innerText = ('')
+            playLoseLife()
             clearInterval(attackTimer)
             console.log('GAME OVER!')
             lifeCount = lifeCount - 1
