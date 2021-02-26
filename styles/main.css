@@ -85,7 +85,7 @@ h1 {
   flex-grow: 1;
   height: 50px;
   width: 50px;
-  color: white;
+  color: transparent;
 }
 
 .grid div.syringe {

@@ -22,7 +22,7 @@ function init() {
   let syringeCurrentPosition = 142
   //!Laser
   const laserClass = 'laser'
-  const splashClass = 'splash'
+  // const splashClass = 'splash'
   //! Covid19
   const covid20Class = 'covid20'
   const covid21Class = 'covid21'
