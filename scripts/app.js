@@ -1,12 +1,16 @@
 function init() {
 
   //! Variables
-  const startGameScreen = document.getElementById('start-game')
   //! Start button
   const startButton = document.querySelector('button')
-  console.log('button')
+  const startGameScreen = document.getElementById('start-game')
+  // console.log('button')
   //! Play again button
+  const playAgainButton = document.getElementById('play-again-button')
+  const gameOverScreen = document.getElementById('game-over')
+  gameOverScreen.style.display = 'none'
 
+  // console.log(playAgainButton)
   //! Score!
   const score = document.querySelector('span.points')
   console.log(score)
@@ -31,6 +35,7 @@ function init() {
   const covid22Class = 'covid22'
   //! Attack
   const attackClass = 'attack'
+
 
   //! Make a grid with syringe
   function createGrid(syringeStartPosition) {
@@ -146,13 +151,14 @@ function init() {
         clearInterval(laserTimer)
       }
       // console.log(laserPosition)
-    }, 150)
+    }, 100)
   }
 
 
   //! Move formation
   let xDirection = true
   let xCount = 0
+  // let speed = 700
 
   function moveFormation() {
     const move = setInterval(() => {
@@ -182,7 +188,7 @@ function init() {
           cells[i].classList.remove(covid22Class)
         }
 
-      //! Move down every 4 iterations
+      //! Move down every 7 iterations
       if (xCount === 7) {
         for (let i = 135; i >= 0; i--) {
           if (cells[i].className === covid20Class) {
@@ -198,6 +204,8 @@ function init() {
         }
         xCount = 0
         xDirection = !xDirection
+        // speed = speed - 100
+        // console.log(speed)
         // console.log(xDirection)
       } else {
         //! Move left or right depending on current direction of movement
@@ -243,6 +251,7 @@ function init() {
       function gameOver() {
         console.log('Game Over!')
         clearInterval(move)
+        gameOverScreen.style.display = ''
         //* ZOOM INTO SCORE?********************
       }
     }, 700)
@@ -309,6 +318,7 @@ function init() {
             clearInterval(attackTimer)
             console.log('GAME OVER!')
             lifeCount = lifeCount - 1
+            gameOverScreen.style.display = 'block'
             attackExists = false
           } else {
             console.log('INNER WRONG!')
@@ -328,11 +338,19 @@ function init() {
     virusAttack()
     console.log(startGameScreen)
     startGameScreen.style.display = 'none'
-    // startGameScreen.style.top = height
-
   }
   startButton.addEventListener('click', startGame)
 
+  function playAgain() {
+    console.log('Pkay Again!')
+    // addCovid19()
+    // moveFormation()
+    // virusAttack()
+    console.log(playAgain)
+    gameOverScreen.style.display = 'block'
+    location.reload()
+  }
+  playAgainButton.addEventListener('click', playAgain)
 
 
 }
