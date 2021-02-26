@@ -38,17 +38,17 @@ function init() {
   //! Audio
   const audio = document.getElementById('audio')
   function playShoot() {
-    audio.src = '../Assets/Drip-02.wav'
+    audio.src = './Assets/Drip-02.wav'
     audio.play()
   }
   const remove = document.getElementById('remove')
   function playRemove() {
-    remove.src = '../Assets/SdRemove.wav'
+    remove.src = './Assets/SdRemove.wav'
     remove.play()
   }
   const loseLife = document.getElementById('lose-life')
   function playLoseLife() {
-    loseLife.src = '../Assets/doop2.wav'
+    loseLife.src = './Assets/doop2.wav'
     loseLife.play()
   }
   //! Make a grid with syringe
