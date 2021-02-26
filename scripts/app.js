@@ -1,10 +1,12 @@
 function init() {
 
   //! Variables
-  // const startGameScreen = document.getElementById('game-screen')
+  const startGameScreen = document.getElementById('start-game')
   //! Start button
   const startButton = document.querySelector('button')
   console.log('button')
+  //! Play again button
+
   //! Score!
   const score = document.querySelector('span.points')
   console.log(score)
@@ -129,10 +131,10 @@ function init() {
           cells[laserPosition].classList.remove(covid22Class)
           // cells[laserPosition].classList.add(splashClass)
 
-          laserExists = false
           scorePoints()
           covidCount--
           console.log(covidCount)
+          laserExists = false
         }
       } else if (laserExists === true && laserPosition <= width) {
         //! Remove laserClass when it reaches the top of the screen and restart interval
@@ -324,7 +326,8 @@ function init() {
     addCovid19()
     moveFormation()
     virusAttack()
-    // startGameScreen.style.visibility = 'hidden'
+    console.log(startGameScreen)
+    startGameScreen.style.display = 'none'
     // startGameScreen.style.top = height
 
   }
