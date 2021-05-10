@@ -297,7 +297,7 @@ function init() {
         randomNumber = Number(randomCell.innerText)
         attackPosition = randomNumber + width
 
-        //! is even gives approx. 50% probabilty of firing - change this if needed 
+        //! is even gives approx. 50% probability of firing - change this if needed 
         if (randomCell.className === covid20Class && cells[randomNumber + width].className !== covid21Class) {
           cells[attackPosition].classList.add(attackClass)
           console.log('Fire!')
