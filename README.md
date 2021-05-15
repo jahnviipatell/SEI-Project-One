@@ -20,6 +20,7 @@ To build a grid-based browser game with pure JavaScript in 7 days.
 - GitHub
 
 **Overview**
+
 My version of the classic Space Invaders game has a Covid-19 inspired twist. The aim of the game has remained the same: for the user to shoot the invading virus molecules before they reach dangerously close to the player. The fleet of molecules periodically drop a molecular bomb at the player which must be dodged or a life is lost. The player can move left or right and fire a shot from the syringe to eliminate any molecules it comes in contact with. The game ends one of two ways: if the player loses all 3 lives or if the fleet of molecules reach the player. Once the player has won or died, the player can choose to play again. 
 
 The aim of the game is to achieve the highest score before the molecules reach the syringe. 
@@ -27,6 +28,7 @@ The aim of the game is to achieve the highest score before the molecules reach t
 ![Screen Recording 2021-05-10 at 17 05 12](https://user-images.githubusercontent.com/78035012/117689829-0fa99880-b1b2-11eb-8c91-24d40dd82b6a.gif)
 
 **Process**
+
 I started developing the game by sketching out a plan of all the different functionalities the game should have, and ranked them to critical for MVP and Nice-To-Haves. I then started pseudocoding my MVP down into bite size chunks to make sure I could deliver it in time to allow time for polishing and styling.
 
 There were five key parts of the game: 
