@@ -35,14 +35,67 @@ There were five key parts of the game:
 
 1. Creating a formation of attacking molecules.
 
-![Screenshot 2021-05-10 at 12 51 17](https://user-images.githubusercontent.com/78035012/118380204-efc20c80-b5d7-11eb-8aad-0a0fab740e9d.png)
-
+```
+function addCovid19() {
+    for (let i = 7; i < 15; i++) {
+      cells[i].classList.add(covid20Class)
+    }
+    for (let i = 22; i < 30; i++) {
+      cells[i].classList.add(covid21Class)
+    }
+    for (let i = 37; i < 45; i++) {
+      cells[i].classList.add(covid22Class)
+    }
+    for (let i = 52; i < 60; i++) {
+      cells[i].classList.add(covid21Class)
+    }
+    for (let i = 67; i < 75; i++) {
+      cells[i].classList.add(covid20Class)
+    }
+  }
+ ```
+ 
 - My formation consists of three different molecules, these were allocated their own class in CSS and added to a cell in the 15 x 15 grid using a for loop. 
  
 2. Using a set interval to move this formation across and down the grid.
  
-![Screenshot 2021-05-10 at 12 59 54](https://user-images.githubusercontent.com/78035012/118380234-18e29d00-b5d8-11eb-97a8-d2a8864beda0.png)
-
+```
+if (xDirection === true) {
+          cells.forEach((cell, index) => {
+            if (cell.className === covid20Class) {
+              cells[index].classList.remove(covid20Class)
+              cells[index - 1].classList.add(covid20Class)
+            } else if (cell.className === covid21Class) {
+              cells[index].classList.remove(covid21Class)
+              cells[index - 1].classList.add(covid21Class)
+            } else if (cell.className === covid22Class) {
+              cells[index].classList.remove(covid22Class)
+              cells[index - 1].classList.add(covid22Class)
+            }
+          })
+          xCount = xCount + 1
+          // console.log(xCount)
+        } else if (xDirection === false) {
+          cells.reverse().forEach((cell, index) => {
+            if (cell.className === covid20Class) {
+              cells[index].classList.remove(covid20Class)
+              cells[index - 1].classList.add(covid20Class)
+            } else if (cell.className === covid21Class) {
+              cells[index].classList.remove(covid21Class)
+              cells[index - 1].classList.add(covid21Class)
+            } else if (cell.className === covid22Class) {
+              cells[index].classList.remove(covid22Class)
+              cells[index - 1].classList.add(covid22Class)
+            }
+          })
+          xCount = xCount + 1
+          // console.log(xCount)
+          cells.reverse()
+        } else if (cells !== covid20Class && cells !== covid21Class && cells !== covid22Class) {
+          addCovid19()
+        } else {
+```
+ 
 - For each cell the corresponding CSS covid class was removed and readded at a position of +1 or -1 depending on the direction of travel. 
 - The direction of travel changes when the xCount reaches 7 and this moves the entire formation down the grid and closer to the player. 
  
